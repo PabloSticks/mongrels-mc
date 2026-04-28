@@ -98,12 +98,10 @@ También coordinaba encuentros con otras bandas, asegurando logística y discrec
 Su principal responsabilidad era resguardar la seguridad del grupo durante los trayectos.
 Así, Karlos pasó de ser un novato a una pieza clave en la estructura operativa del Moto Club.`,
       antecedentes: [
--        { fecha: '14·ABR·2017', desc: 'Conducción temeraria y evasión policial en autopista norte. Multa y suspensión.', badge: 'Tránsito', tipo: 'dark' },
--        { fecha: '22·NOV·2021', desc: 'Sospechoso en operativo de transporte ilegal. Sin cargos formalizados.', badge: 'Tráfico', tipo: 'gray' },
-+        { fecha: '14·ABR·2017', desc: 'Conducción a exceso de velocidad en zona urbana, poniendo en riesgo a peatones y otros conductores.', badge: 'Tránsito', tipo: 'dark' },
-+        { fecha: '22·NOV·2021', desc: 'Evasión de control policial mediante fuga en motocicleta.', badge: 'Evasión', tipo: 'red' },
-+        { fecha: '09·MAY·2022', desc: 'Conducción bajo la influencia de alcohol o sustancias, agravada por exceso de velocidad.', badge: 'Alcohol', tipo: 'red' },
-+        { fecha: '18·AGO·2023', desc: 'Uso de vehículo con placas adulteradas para evitar identificación.', badge: 'Placas', tipo: 'gray' },
+    { fecha: '14·ABR·2017', desc: 'Conducción a exceso de velocidad en zona urbana, poniendo en riesgo a peatones y otros conductores.', badge: 'Tránsito', tipo: 'dark' },
+    { fecha: '22·NOV·2021', desc: 'Evasión de control policial mediante fuga en motocicleta.', badge: 'Evasión', tipo: 'red' },
+    { fecha: '09·MAY·2022', desc: 'Conducción bajo la influencia de alcohol o sustancias, agravada por exceso de velocidad.', badge: 'Alcohol', tipo: 'red' },
+    { fecha: '18·AGO·2023', desc: 'Uso de vehículo con placas adulteradas para evitar identificación.', badge: 'Placas', tipo: 'gray' },
        ]
      }
    },
