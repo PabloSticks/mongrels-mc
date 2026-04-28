@@ -57,14 +57,13 @@ Y desde cero, en una nueva ciudad, comenzarán a levantar Mongrel’s otra vez c
   {
     id: 3, alias: 'Ecko', role: 'Sgt. at Arms', pin: 'pin-yellow', foto: 'fotos/Ecko.png',
     ficha: {
-      nombre: 'John', apellido: 'Ortiz', dni: '84736291',
+      nombre: 'Jack', apellido: 'Ortiz', dni: '93847512',
       nacimiento: '13·OCT·1998', lugar: 'Sturgis', clasificacion: 'RIESGO MEDIO',
-      altura: '1.78 m', peso: '80 kg', ojos: 'Verdes', cabello: 'Castaño',
-      historia: 'John Ortiz, criado en un entorno rural, quedó huérfano a temprana edad, lo que lo obligó a madurar rápido y volverse autosuficiente. Durante su adolescencia encontró en la música una forma de sustento y escape, aprendiendo a leer a las personas y controlar ambientes. Con el tiempo se formó como mecánico, destacando por su orden y precisión. Ingresó al The Lost MC, donde adoptó el apodo "Ecko" y ascendió hasta Sargento de Armas por mérito propio. La mentira y la deslealtad marcaron su forma de ver el mundo, convirtiéndose en principios que no tolera. Tras la disolución del club, sostuvo una charla directa con la presidenta y el vicepresidente de Mongrels MC, quienes tras consultar con sus miembros aceptaron su ingreso. Actualmente es Sargento de Armas bajo el mando de la presidenta, a quien le debe lealtad absoluta y por quien daría la vida, incluso luchando hasta en el infierno. Fue ahí donde Ecko encontró el verdadero significado de la lealtad.',
+      altura: '1.77 m', peso: '78 kg', ojos: 'Café', cabello: 'Castaño',
+      historia: 'Jack Ortiz, nacido el 13 de octubre de 1998, creció bajo la crianza firme de su madre en un entorno donde el respeto y el control eran fundamentales. Desde niño fue observador y tranquilo, aprendiendo a no confiar fácilmente y a actuar solo cuando era necesario. Durante su adolescencia comenzó a pasar más tiempo en la calle, donde formó su carácter. A los 17 años dio sus primeros pasos en el mundo delictual, participando en robos menores y trabajos discretos, destacando por su calma y precisión al actuar. Con el tiempo se involucró en encargos más organizados, desarrollando habilidades en mecánica y resolución de problemas. Su forma directa y eficiente de actuar le dio el apodo “Ecko”. Hoy busca consolidar su lugar dentro de Mongrel’s MC, ganarse el respeto desde abajo y construir su propio nombre sin depender de nadie.',
       antecedentes: [
-        { fecha: '14·SEP·2017', desc: 'Asociación con organización criminal The Lost MC. Participación en operaciones delictivas documentada.', badge: 'Crimen Org.', tipo: 'dark' },
-        { fecha: '22·MAR·2021', desc: 'Incidente violento con rival territorial. Sargento de Armas confirmado en The Lost MC.', badge: 'Violencia', tipo: 'red' },
-        { fecha: '08·JUN·2024', desc: 'Transferencia registrada a Mongrels MC. Integración como Sargento de Armas completada.', badge: 'MC Trans.', tipo: 'gray' },
+        { fecha: '12·MAY·2017', desc: 'Robo menor y participación en trabajos discretos vinculados al entorno callejero.', badge: 'Robo', tipo: 'dark' },
+        { fecha: '03·NOV·2019', desc: 'Incursión en encargos organizados y actividades ilícitas asociadas a vehículos y mecánica.', badge: 'Mecánica', tipo: 'gray' },
       ]
     }
   },
