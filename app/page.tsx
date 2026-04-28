@@ -108,7 +108,7 @@ Así, Karlos pasó de ser un novato a una pieza clave en la estructura operativa
     id: 6, alias: 'Kayn', role: 'Treasurer', pin: 'pin-white', foto: 'fotos/Kayn.png',
     ficha: {
       nombre: 'Camilo', apellido: 'Skywalker', dni: '555879431',
-      nacimiento: '04·MAY·2006', lugar: 'San Andreas', clasificacion: 'ALTO RIESGO',
+      nacimiento: '04·MAY·2006', lugar: 'Texas', clasificacion: 'ALTO RIESGO',
       altura: '1.89 m', peso: '92 kg', ojos: 'Negros', cabello: 'Negro',
       historia: 'Camilo Skywalker, hijo de una familia de motociclistas junto a sus dos hermanas y su padre. Desde pequeño destacó por su capacidad innata para las matemáticas, que usó frecuentemente para estafar a sus compañeros de escuela. A los 18 años subsistía mediante lavado de dinero en un mecánico y estafas telefónicas. Junto con un amigo intentó asaltar una joyería, fue detenido y condenado, pero gracias a su familia y contactos logró salir libre. Su mayor aspiración es proteger a todos sus amigos y familia, brindándoles ayuda en todo lo que esté a su alcance.',
       antecedentes: [
