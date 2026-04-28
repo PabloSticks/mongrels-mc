@@ -41,7 +41,6 @@ body {
   overflow-x: hidden;
 }
 
-/* global grain overlay */
 body::after {
   content: '';
   position: fixed;
@@ -59,7 +58,7 @@ body::after {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
   background: rgba(6,6,5,0.98);
   backdrop-filter: blur(16px);
-  height: 35px;
+  height: 40px;
   display: flex;
   align-items: stretch;
 }
@@ -79,13 +78,13 @@ body::after {
 }
 
 .nav-inner {
-  width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 32px;
+  width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 20px;
   display: flex; align-items: center; justify-content: space-between;
-  gap: 24px;
+  gap: 16px;
 }
 
 .nav-brand {
-  display: flex; align-items: center; gap: 12px;
+  display: flex; align-items: center; gap: 8px;
   text-decoration: none; flex-shrink: 0;
 }
 
@@ -93,14 +92,13 @@ body::after {
 .nav-one-pct:hover { opacity: 1; }
 
 .nav-one-pct-img {
-  width: 28px;
-  height: 36px;
+  width: 18px; height: 23px;
   object-fit: contain;
   filter: drop-shadow(0 0 8px rgba(47, 120, 255, 0.45));
 }
 
 .nav-logo-img {
-  width: 40px; height: 40px; object-fit: contain;
+  width: 26px; height: 26px; object-fit: contain;
   filter: drop-shadow(0 0 8px rgba(107,15,26,0.7));
 }
 
@@ -108,8 +106,8 @@ body::after {
 
 .nav-brand-name {
   font-family: 'One Slice', sans-serif;
-  font-size: 20px;
-  letter-spacing: 0.2em;
+  font-size: 4px;
+  letter-spacing: 0.1em;
   color: var(--white);
   line-height: 1;
   white-space: nowrap;
@@ -118,14 +116,14 @@ body::after {
 .nav-brand-name span { color: var(--bordo-light); }
 
 .nav-brand-sub {
-  font-family: 'One Slice', sans-serif;
-  font-size: 6px;
-  font-weight: 400;
-  letter-spacing: 0.62em;
+  font-family: 'Oswald', sans-serif;
+  font-size: 7px;
+  font-weight: 300;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--text-dim);
   white-space: nowrap;
-  margin-top: 1px;
+  margin-top: 2px;
 }
 
 .nav-links {
@@ -140,27 +138,27 @@ body::after {
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 0 16px;
-  font-family: 'One Slice', sans-serif;
+  padding: 0 14px;
+  font-family: 'Oswald', sans-serif;
   font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.3em;
+  font-weight: 500;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--text-dim);
   text-decoration: none;
-  height: 70px;
+  height: 40px;
   justify-content: center;
   border-right: 1px solid var(--border);
   transition: color 0.2s, background 0.2s;
   position: relative;
-  gap: 10px;
+  gap: 6px;
+  white-space: nowrap;
 }
 
 .nav-links li:first-child a { border-left: 1px solid var(--border); }
 
 .nav-link-icon {
-  width: 22px;
-  height: 28px;
+  width: 10px; height: 12px;
   object-fit: contain;
   flex-shrink: 0;
   filter: drop-shadow(0 0 6px rgba(47, 120, 255, 0.4));
@@ -182,14 +180,11 @@ body::after {
 }
 
 .nav-links li a:hover::after { transform: scaleX(1); }
-.nav-links li a:hover .nav-link-num { opacity: 1; }
 
-/* chain decoration */
 .nav-tail { display: flex; align-items: center; flex-shrink: 0; }
 .nav-chain { display: flex; gap: 4px; align-items: center; }
 .nav-chain-icon {
-  width: 12px;
-  height: 16px;
+  width: 6px; height: 8px;
   object-fit: contain;
   filter: drop-shadow(0 0 6px rgba(47, 120, 255, 0.35));
 }
@@ -209,7 +204,6 @@ body::after {
   padding-bottom: 72px;
 }
 
-/* Background photo — replace /fotos/hero.jpg with your image */
 .hero-photo {
   position: absolute; inset: 0;
   background-image: url('/fotos/hero.jpg');
@@ -250,8 +244,7 @@ body::after {
   bottom: -40px; left: 50%;
   transform: translateX(-50%);
   font-family: 'One Slice', sans-serif;
-  /* Reduce extreme scaling on small/large viewports */
-  font-size: clamp(48px, 18vw, 160px);
+  font-size: clamp(6px, 2vw, 22px);
   color: rgba(255,255,255,0.015);
   pointer-events: none;
   user-select: none;
@@ -278,10 +271,10 @@ body::after {
 .hero-pre-line { width: 50px; height: 1px; background: var(--bordo); }
 
 .hero-pre-text {
-  font-family: 'One Slice', sans-serif;
-  font-size: 8px;
-  font-weight: 600;
-  letter-spacing: 0.75em;
+  font-family: 'Oswald', sans-serif;
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.55em;
   text-transform: uppercase;
   color: var(--bordo-light);
 }
@@ -299,11 +292,10 @@ body::after {
 
 .hero-title {
   font-family: 'One Slice', sans-serif;
-  /* Tamer scaling for hero title to avoid overly large text */
-  font-size: clamp(36px, 6.5vw, 96px);
+  font-size: clamp(6px, 1.2vw, 17px);
   letter-spacing: 0.1em;
   color: var(--white);
-  line-height: 0.88;
+  line-height: 3.5;
   margin-top: 8px;
   white-space: nowrap;
   text-shadow: 0 0 100px rgba(107,15,26,0.3);
@@ -343,11 +335,11 @@ body::after {
 }
 
 .hero-chip {
-  font-family: 'One Slice', sans-serif;
-  font-size: 8px; font-weight: 600;
-  letter-spacing: 0.34em;
+  font-family: 'Oswald', sans-serif;
+  font-size: 9px; font-weight: 500;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
-  padding: 14px 28px;
+  padding: 12px 24px;
   color: var(--text-dim);
   border: 1px solid var(--border2);
   border-right-width: 0;
@@ -356,7 +348,6 @@ body::after {
 .hero-chip:last-child { border-right-width: 1px; }
 .hero-chip.hl { color: var(--bordo-light); border-color: var(--bordo); }
 
-/* hero bottom stats bar */
 .hero-bottom-bar {
   position: absolute;
   bottom: 0; left: 0; right: 0;
@@ -377,14 +368,14 @@ body::after {
 
 .hbb-num {
   font-family: 'One Slice', sans-serif;
-  font-size: 24px; letter-spacing: 0.06em;
+  font-size: 5px; letter-spacing: 0.06em;
   color: var(--white); line-height: 1;
 }
 
 .hbb-label {
-  font-family: 'One Slice', sans-serif;
-  font-size: 7px; font-weight: 600;
-  letter-spacing: 0.42em; text-transform: uppercase;
+  font-family: 'Oswald', sans-serif;
+  font-size: 8px; font-weight: 400;
+  letter-spacing: 0.32em; text-transform: uppercase;
   color: var(--text-dim);
 }
 
@@ -396,8 +387,8 @@ body::after {
 .hero-scroll {
   position: absolute;
   bottom: 90px; left: 50%; transform: translateX(-50%);
-  font-family: 'One Slice', sans-serif;
-  font-size: 7px; letter-spacing: 0.45em; text-transform: uppercase;
+  font-family: 'Oswald', sans-serif;
+  font-size: 8px; letter-spacing: 0.38em; text-transform: uppercase;
   color: var(--text-dim);
   display: flex; flex-direction: column; align-items: center; gap: 12px;
   animation: scrollbounce 2.5s ease-in-out infinite;
@@ -424,12 +415,13 @@ body::after {
 .container { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
 
 .sec-eye {
-  font-family: 'One Slice', sans-serif;
-  font-size: 8px; font-weight: 600;
-  letter-spacing: 0.68em; text-transform: uppercase;
+  font-family: 'Oswald', sans-serif;
+  font-size: 9px; font-weight: 500;
+  letter-spacing: 0.5em; text-transform: uppercase;
   color: var(--bordo-light);
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   display: flex; align-items: center; gap: 12px;
+  position: relative; z-index: 3;
 }
 
 .sec-eye::before {
@@ -440,10 +432,11 @@ body::after {
 
 .sec-title {
   font-family: 'One Slice', sans-serif;
-  /* Moderar tamaño de títulos de sección */
-  font-size: clamp(28px, 4.5vw, 56px);
+  font-size: clamp(5px, 0.8vw, 10px);
   letter-spacing: 0.08em;
-  color: var(--white); line-height: 1.02;
+  color: var(--white);
+  line-height: 3.5;
+  position: relative; z-index: 1;
 }
 
 .sec-rule {
@@ -482,20 +475,21 @@ body::after {
 
 .hist-year-tag {
   display: inline-block;
-  font-family: 'One Slice', sans-serif;
-  font-size: 8px; font-weight: 700;
-  letter-spacing: 0.5em; text-transform: uppercase;
+  font-family: 'Oswald', sans-serif;
+  font-size: 9px; font-weight: 600;
+  letter-spacing: 0.4em; text-transform: uppercase;
   color: var(--bordo-light);
   border: 1px solid var(--bordo);
-  padding: 7px 16px;
+  padding: 6px 14px;
   margin-bottom: 18px;
   align-self: flex-start;
 }
 
 .hist-text h3 {
   font-family: 'One Slice', sans-serif;
-  font-size: 30px; letter-spacing: 0.06em;
+  font-size: 6px; letter-spacing: 0.06em;
   color: var(--white); margin-bottom: 20px;
+  line-height: 3.5;
 }
 
 .hist-text p { font-size: 16px; color: var(--text); line-height: 2; word-spacing: 0.08em; }
@@ -524,8 +518,7 @@ body::after {
 .img-year {
   position: absolute; bottom: 16px; left: 20px;
   font-family: 'One Slice', sans-serif;
-  /* Ajuste para evitar números gigantes sobre imágenes */
-  font-size: clamp(28px, 6vw, 48px); letter-spacing: 0.05em;
+  font-size: clamp(4px, 0.7vw, 6px); letter-spacing: 0.05em;
   color: rgba(242,237,228,0.06); line-height: 1; z-index: 2;
 }
 
@@ -536,8 +529,9 @@ body::after {
 ══════════════════════════════════ */
 .board-desc {
   margin-top: 8px;
-  font-family: 'One Slice', sans-serif;
-  font-size: 8px; letter-spacing: 0.38em;
+  font-family: 'Oswald', sans-serif;
+  font-size: 9px; font-weight: 400;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--text-dim);
 }
@@ -599,7 +593,6 @@ body::after {
   );
 }
 
-/* Police header */
 .police-header {
   position: absolute; top: 0; left: 0; right: 0;
   background: #130c02;
@@ -610,9 +603,9 @@ body::after {
 }
 
 .pd-badge {
-  font-family: 'One Slice', sans-serif;
-  font-size: 10px; font-weight: 700;
-  letter-spacing: 0.38em; text-transform: uppercase;
+  font-family: 'Oswald', sans-serif;
+  font-size: 9px; font-weight: 600;
+  letter-spacing: 0.28em; text-transform: uppercase;
   color: rgba(190,150,75,0.65);
 }
 
@@ -632,15 +625,15 @@ body::after {
 
 .conf-stamp span {
   font-family: 'One Slice', sans-serif;
-  font-size: 17px; font-weight: 700;
-  letter-spacing: 0.38em; text-transform: uppercase;
+  font-size: 4px; font-weight: 700;
+  letter-spacing: 0.3em; text-transform: uppercase;
   color: rgba(107,15,26,0.65);
   display: block;
 }
 
 .conf-stamp small {
-  font-family: 'One Slice', sans-serif;
-  font-size: 9px; letter-spacing: 0.2em;
+  font-family: 'Oswald', sans-serif;
+  font-size: 8px; letter-spacing: 0.16em;
   color: rgba(107,15,26,0.5); text-transform: uppercase;
 }
 
@@ -649,7 +642,6 @@ body::after {
   pointer-events: none; z-index: 1;
 }
 
-/* Board grid */
 .board-grid {
   position: relative; z-index: 2;
   margin-top: 28px;
@@ -694,7 +686,6 @@ body::after {
   position: relative;
 }
 
-/* tape effect on every other card */
 .bcard:nth-child(2n) .photo-wrap::before {
   content: '';
   position: absolute; top: -10px; left: 50%;
@@ -730,9 +721,9 @@ body::after {
   position: absolute; top: 6px; right: 6px;
   background: var(--bordo);
   color: #fff;
-  font-family: 'One Slice', sans-serif;
-  font-size: 9px; font-weight: 700;
-  letter-spacing: 0.1em;
+  font-family: 'Oswald', sans-serif;
+  font-size: 8px; font-weight: 600;
+  letter-spacing: 0.08em;
   padding: 2px 6px; z-index: 2;
 }
 
@@ -752,9 +743,9 @@ body::after {
 .bcard-hover-label {
   position: absolute; bottom: -24px; left: 0; right: 0;
   text-align: center;
-  font-family: 'One Slice', sans-serif;
-  font-size: 9px; font-weight: 600;
-  letter-spacing: 0.2em; text-transform: uppercase;
+  font-family: 'Oswald', sans-serif;
+  font-size: 8px; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase;
   color: var(--bordo-light);
   opacity: 0;
   transition: opacity 0.2s;
@@ -762,7 +753,6 @@ body::after {
 
 .bcard:hover .bcard-hover-label { opacity: 1; }
 
-/* Pushpins */
 .pushpin {
   position: absolute; top: -11px; left: 50%;
   transform: translateX(-50%);
@@ -783,7 +773,6 @@ body::after {
 .pin-white  { background: radial-gradient(circle at 35% 35%, #fff, #bbb); }
 .pin-blue   { background: radial-gradient(circle at 35% 35%, #88bbff, #1144aa); }
 
-/* Stickies */
 .sticky {
   position: absolute;
   font-family: 'Caveat', cursive;
@@ -839,14 +828,6 @@ body::after {
     repeating-linear-gradient(90deg, rgba(130,110,50,0.14) 0px, transparent 1px, transparent 24px);
 }
 
-.board-map::after {
-  content: '';
-  position: absolute; top: 50%; left: 50%;
-  transform: translate(-50%,-50%);
-  font-family: monospace; font-size: 10px;
-  color: rgba(0,0,0,0.3); text-align: center; white-space: nowrap;
-}
-
 /* ══════════════════════════════════
    ¿POR QUÉ NOSOTROS?
 ══════════════════════════════════ */
@@ -889,7 +870,7 @@ body::after {
 
 .porque-num {
   font-family: 'One Slice', sans-serif;
-  font-size: 26px; letter-spacing: 0.04em;
+  font-size: 5px; letter-spacing: 0.04em;
   color: rgba(107,15,26,0.15); line-height: 1;
   margin-bottom: 6px;
 }
@@ -898,8 +879,9 @@ body::after {
 
 .porque-card h3 {
   font-family: 'One Slice', sans-serif;
-  font-size: 14px; letter-spacing: 0.06em;
+  font-size: 4px; letter-spacing: 0.04em;
   color: var(--white); margin-bottom: 12px;
+  line-height: 3.5;
 }
 
 .porque-card p { font-size: 16px; color: var(--text); line-height: 1.75; }
@@ -970,20 +952,18 @@ body::after {
 
 .idea-num {
   font-family: 'One Slice', sans-serif;
-  /* Numerales en tarjetas: más comedidos en pantallas grandes */
-  font-size: clamp(20px, 6vw, 36px); letter-spacing: 0.04em;
+  font-size: clamp(3px, 0.6vw, 5px); letter-spacing: 0.04em;
   color: rgba(107,15,26,0.2); line-height: 1;
 }
 
 .idea-nivel {
-  font-family: 'One Slice', sans-serif;
-  font-size: 8px; font-weight: 700;
-  letter-spacing: 0.42em; text-transform: uppercase;
-  padding: 7px 14px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 8px; font-weight: 600;
+  letter-spacing: 0.32em; text-transform: uppercase;
+  padding: 5px 12px;
   border: 1px solid currentColor;
 }
 
-/* nivel color variations */
 .idea-social .idea-nivel    { color: #7eb8d4; border-color: rgba(126,184,212,0.4); }
 .idea-criminal .idea-nivel  { color: var(--bordo-light); border-color: rgba(160,28,46,0.4); }
 .idea-interno .idea-nivel   { color: #f0a050; border-color: rgba(240,160,80,0.4); }
@@ -991,8 +971,9 @@ body::after {
 
 .idea-titulo {
   font-family: 'One Slice', sans-serif;
-  font-size: 24px; letter-spacing: 0.05em;
+  font-size: 5px; letter-spacing: 0.04em;
   color: var(--white); margin-bottom: 12px;
+  line-height: 3.5;
 }
 
 .idea-desc { font-size: 16px; color: var(--text); line-height: 1.95; word-spacing: 0.08em; }
@@ -1038,16 +1019,17 @@ body::after {
 }
 
 .pcard-num {
-  font-family: 'One Slice', sans-serif;
-  font-size: 10px; font-weight: 600;
-  letter-spacing: 0.48em; text-transform: uppercase;
+  font-family: 'Oswald', sans-serif;
+  font-size: 9px; font-weight: 500;
+  letter-spacing: 0.38em; text-transform: uppercase;
   color: var(--bordo-light); margin-bottom: 8px;
 }
 
 .pcard-title {
   font-family: 'One Slice', sans-serif;
-  font-size: 24px; letter-spacing: 0.06em;
+  font-size: 5px; letter-spacing: 0.04em;
   color: var(--white); margin-bottom: 16px;
+  line-height: 3.5;
 }
 
 .pcard p { font-size: 16px; color: var(--text); line-height: 1.95; word-spacing: 0.08em; }
@@ -1062,9 +1044,9 @@ body::after {
 
 .pcard ul li::before {
   content: '//'; color: var(--bordo-light);
-  font-family: 'One Slice', sans-serif;
-  font-size: 10px; font-weight: 700;
-  margin-top: 4px; flex-shrink: 0;
+  font-family: 'Oswald', sans-serif;
+  font-size: 11px; font-weight: 700;
+  margin-top: 2px; flex-shrink: 0;
 }
 
 .hier-table { margin-top: 8px; width: 100%; }
@@ -1079,9 +1061,9 @@ body::after {
 .hier-row:last-child { border-bottom: none; }
 
 .hier-rank {
-  font-family: 'One Slice', sans-serif;
-  font-size: 10px; font-weight: 700;
-  letter-spacing: 0.18em; text-transform: uppercase;
+  font-family: 'Oswald', sans-serif;
+  font-size: 9px; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase;
   color: var(--bordo-light);
 }
 
@@ -1167,17 +1149,18 @@ body::after {
 
 .footer-brand-name {
   font-family: 'One Slice', sans-serif;
-  font-size: 28px; letter-spacing: 0.1em;
-  color: var(--white);
+  font-size: 5px; letter-spacing: 0.08em;
+  color: var(--white); line-height: 1.2;
 }
 
 .footer-brand-name span { color: var(--bordo-light); }
 
 .footer-brand-sub {
-  font-family: 'One Slice', sans-serif;
-  font-size: 10px; letter-spacing: 0.3em;
+  font-family: 'Oswald', sans-serif;
+  font-size: 9px; font-weight: 300;
+  letter-spacing: 0.22em;
   text-transform: uppercase; color: var(--text-dim);
-  margin-top: 2px; display: block;
+  margin-top: 4px; display: block;
 }
 
 .footer-nav-col {
@@ -1186,9 +1169,9 @@ body::after {
 }
 
 .footer-nav-title {
-  font-family: 'One Slice', sans-serif;
-  font-size: 10px; font-weight: 700;
-  letter-spacing: 0.48em; text-transform: uppercase;
+  font-family: 'Oswald', sans-serif;
+  font-size: 9px; font-weight: 600;
+  letter-spacing: 0.38em; text-transform: uppercase;
   color: var(--text-dim);
   margin-bottom: 8px;
   padding-bottom: 8px;
@@ -1197,9 +1180,9 @@ body::after {
 }
 
 .footer-nav-col a {
-  font-family: 'One Slice', sans-serif;
-  font-size: 12px; font-weight: 500;
-  letter-spacing: 0.28em; text-transform: uppercase;
+  font-family: 'Oswald', sans-serif;
+  font-size: 10px; font-weight: 400;
+  letter-spacing: 0.22em; text-transform: uppercase;
   color: var(--text-dim); text-decoration: none;
   transition: color 0.2s;
 }
@@ -1235,8 +1218,9 @@ body::after {
 }
 
 .footer-copy {
-  font-family: 'One Slice', sans-serif;
-  font-size: 11px; letter-spacing: 0.1em;
+  font-family: 'Oswald', sans-serif;
+  font-size: 10px; font-weight: 300;
+  letter-spacing: 0.08em;
   color: var(--text-dim); text-align: center;
   line-height: 1.7;
 }
@@ -1274,9 +1258,9 @@ body::after {
   position: sticky; top: 0; z-index: 10;
   margin-bottom: 10px;
   display: flex; align-items: center; gap: 8px;
-  font-family: 'One Slice', sans-serif;
-  font-size: 11px; font-weight: 700;
-  letter-spacing: 0.38em; text-transform: uppercase;
+  font-family: 'Oswald', sans-serif;
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.32em; text-transform: uppercase;
   color: var(--text-dim); background: var(--dark3);
   border: 1px solid var(--border2);
   padding: 10px 20px; cursor: pointer;
@@ -1293,7 +1277,6 @@ body::after {
   box-shadow: 0 24px 80px rgba(0,0,0,0.9), 0 4px 16px rgba(0,0,0,0.5);
 }
 
-/* paper texture */
 .modal-sheet::before {
   content: '';
   position: absolute; inset: 0;
@@ -1301,7 +1284,6 @@ body::after {
   pointer-events: none; z-index: 0;
 }
 
-/* aged vignette */
 .modal-sheet::after {
   content: '';
   position: absolute; inset: 0;
@@ -1313,8 +1295,7 @@ body::after {
   position: absolute; top: 50%; left: 50%;
   transform: translate(-50%,-50%) rotate(-30deg);
   font-family: 'One Slice', sans-serif;
-  /* Watermark en modales: escala responsiva con límites */
-  font-size: clamp(40px, 14vw, 90px); font-weight: 700;
+  font-size: clamp(5px, 1.5vw, 10px); font-weight: 700;
   letter-spacing: 0.24em;
   color: rgba(107,15,26,0.05);
   pointer-events: none; z-index: 0;
@@ -1331,47 +1312,35 @@ body::after {
 
 .fdoc-badge {
   padding: 10px 14px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  justify-content: center;
+  display: flex; align-items: center;
+  gap: 10px; justify-content: center;
 }
 
-.fdoc-logo {
-  object-fit: contain;
-  filter: drop-shadow(0 0 10px rgba(70, 148, 255, 0.18));
-}
-
-.fdoc-logo-city {
-  width: 56px;
-  height: 56px;
-}
-
-.fdoc-logo-lspd {
-  width: 58px;
-  height: 58px;
-}
+.fdoc-logo { object-fit: contain; filter: drop-shadow(0 0 10px rgba(70,148,255,0.18)); }
+.fdoc-logo-city { width: 56px; height: 56px; }
+.fdoc-logo-lspd { width: 58px; height: 58px; }
 
 .fdoc-center { text-align: center; padding: 14px 0; }
 
+/* ★ OSWALD en header del modal — se ve limpio y sin crashes */
 .fdoc-dept {
-  font-family: 'One Slice', sans-serif;
-  font-size: 20px; font-weight: 700;
-  letter-spacing: 0.22em; text-transform: uppercase;
-  color: #f5f0e4;
+  font-family: 'Oswald', sans-serif;
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: #f5f0e4; line-height: 1.2;
 }
 
 .fdoc-sub {
-  font-family: 'One Slice', sans-serif;
-  font-size: 10px; font-weight: 400;
-  letter-spacing: 0.42em; text-transform: uppercase;
-  color: #7fa3db; margin-top: 2px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 8px; font-weight: 400;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  color: #7fa3db; margin-top: 4px;
 }
 
 .fdoc-type {
-  font-family: 'One Slice', sans-serif;
-  font-size: 12px; font-weight: 700;
-  letter-spacing: 0.28em; text-transform: uppercase;
+  font-family: 'Oswald', sans-serif;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase;
   color: #2f78ff; margin-top: 6px;
 }
 
@@ -1408,8 +1377,7 @@ body::after {
 }
 
 .fdoc-photo {
-  width: 100%;
-  aspect-ratio: 3/4;
+  width: 100%; aspect-ratio: 3/4;
   background: #ddd5c0;
   border: 2px solid #a09070;
   position: relative; overflow: hidden;
@@ -1428,8 +1396,8 @@ body::after {
 }
 
 .fdoc-photo-ph span {
-  font-family: 'One Slice', sans-serif;
-  font-size: 11px; letter-spacing: 0.2em;
+  font-family: 'Oswald', sans-serif;
+  font-size: 9px; letter-spacing: 0.2em;
   text-transform: uppercase; color: #7a6a50;
 }
 
@@ -1437,28 +1405,29 @@ body::after {
   position: absolute; bottom: 0; left: 0; right: 0;
   background: #1a1a18; color: #f5f0e4;
   font-family: 'Courier Prime', monospace;
-  font-size: 10px; text-align: center;
+  font-size: 9px; text-align: center;
   padding: 6px; letter-spacing: 0.14em;
 }
 
 .fdoc-classif {
-  background: #1a1a18; padding: 12px 18px;
+  background: #1a1a18; padding: 10px 14px;
   display: flex; align-items: center; justify-content: space-between;
-  gap: 36px;
+  gap: 12px;
 }
 
+/* ★ OSWALD para label CLASIFICACIÓN */
 .fdoc-cl-label {
-  font-family: 'One Slice', sans-serif;
-  font-size: 9px; font-weight: 600;
-  letter-spacing: 0.28em; text-transform: uppercase;
+  font-family: 'Oswald', sans-serif;
+  font-size: 8px; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase;
   color: #9a8870;
   flex: 0 0 auto;
 }
 
 .fdoc-cl-val {
   font-family: 'Oswald', sans-serif;
-  font-size: 12px; font-weight: 700;
-  letter-spacing: 0.14em;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.12em;
   text-align: right;
   flex: 1;
 }
@@ -1467,9 +1436,7 @@ body::after {
 .cl-medio  { color: #c07a10; }
 .cl-bajo   { color: #4a7a40; }
 
-.fdoc-phys {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
-}
+.fdoc-phys { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
 
 .fdoc-phys-cell {
   background: #ede6d4;
@@ -1526,9 +1493,7 @@ body::after {
   display: flex; flex-direction: column; gap: 20px;
 }
 
-.fdoc-2col {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 0 24px;
-}
+.fdoc-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 0 24px; }
 
 .fdoc-field-row {
   border-bottom: 1px solid #c8b89a;
@@ -1555,8 +1520,7 @@ body::after {
 .fdoc-historia-text {
   font-family: 'Courier Prime', monospace;
   font-size: 12.5px; color: #2a2218; line-height: 1.75;
-  margin-top: 6px;
-  word-spacing: 0.08em;
+  margin-top: 6px; word-spacing: 0.08em;
 }
 
 .fdoc-antec-list { display: flex; flex-direction: column; gap: 8px; }
@@ -1567,7 +1531,7 @@ body::after {
   padding: 10px 14px;
   display: grid;
   grid-template-columns: 100px 1fr auto;
-  gap: 14px; align-items: start;
+  gap: 14px; align-items: center;
 }
 
 .fdoc-antec-date {
@@ -1582,10 +1546,11 @@ body::after {
   word-spacing: 0.08em;
 }
 
+/* ★ OSWALD para badges — sin overflow, sin crashes */
 .fdoc-antec-badge {
-  font-family: 'One Slice', sans-serif;
+  font-family: 'Oswald', sans-serif;
   font-size: 9px; font-weight: 700;
-  letter-spacing: 0.18em; text-transform: uppercase;
+  letter-spacing: 0.14em; text-transform: uppercase;
   padding: 4px 10px; white-space: nowrap;
 }
 
@@ -1624,82 +1589,3 @@ body::after {
   font-size: 10px; color: #7a6a50;
   word-spacing: 0.1em;
 }
-
-/* ══════════════════════════════════════════════════════
-   ONE SLICE (LAKHAPATI) — FIX v4 DEFINITIVO
-   Reemplaza todos los bloques anteriores.
-   
-   Fix #1: z-index en sec-eye → siempre visible encima del título
-   Fix #2: line-height: 1.8 → evita aplastamiento en 2+ líneas
-   Fix #3: font-size ajustado por sección
-══════════════════════════════════════════════════════ */
-
-/* ── FIX GLOBAL: sec-eye siempre encima ──────────────
-   El glifo de Lakhapati desborda su caja CSS hacia arriba,
-   z-index lo fuerza a renderizar sobre cualquier desborde.     */
-.sec-eye   { position: relative; z-index: 3; }
-.sec-title { position: relative; z-index: 1; }
-
-/* ── NAV ─────────────────────────────────────────────*/
-.nav-brand-name    { font-size: 11px; letter-spacing: 0.12em; line-height: 1; }
-.nav-brand-sub     { font-size: 4px;  letter-spacing: 0.45em; }
-.nav-links li a    { font-size: 5px;  letter-spacing: 0.14em; padding: 0 10px; gap: 5px; height: 35px; }
-.nav-link-icon     { width: 14px; height: 18px; }
-.nav-chain-icon    { width: 8px; height: 11px; }
-
-/* ── HERO ─────────────────────────────────────────── */
-.hero-pre-text     { font-size: 5px;  letter-spacing: 0.65em; }
-.hero-watermark    { font-size: clamp(12px, 4.5vw, 46px); }
-.hero-title        { font-size: clamp(12px, 2.5vw, 36px); line-height: 1.8; }
-.hero-chip         { font-size: 5px;  letter-spacing: 0.2em; padding: 10px 18px; }
-.hbb-num           { font-size: 10px; line-height: 1; }
-.hbb-label         { font-size: 4px;  letter-spacing: 0.28em; }
-.hero-scroll       { font-size: 4px;  letter-spacing: 0.36em; }
-
-/* ── SECCIONES BASE ───────────────────────────────── */
-.sec-eye           { font-size: 5px;  letter-spacing: 0.55em; margin-bottom: 14px; }
-.sec-title         { font-size: clamp(10px, 1.6vw, 20px); line-height: 1.8; margin-top: 4px; }
-
-/* ── HISTORIA ─────────────────────────────────────── */
-.hist-year-tag     { font-size: 5px;  letter-spacing: 0.38em; padding: 5px 12px; }
-.hist-text h3      { font-size: 12px; line-height: 1.8; margin-bottom: 14px; }
-.img-year          { font-size: clamp(7px, 1.3vw, 11px); }
-
-/* ── BOARD / MIEMBROS ─────────────────────────────── */
-.board-desc        { font-size: 5px;  letter-spacing: 0.26em; }
-.pd-badge          { font-size: 5px;  letter-spacing: 0.2em; }
-.conf-stamp span   { font-size: 7px;  letter-spacing: 0.2em; }
-.conf-stamp small  { font-size: 4px;  letter-spacing: 0.12em; }
-.ev-num            { font-size: 6px; }
-.bcard-hover-label { font-size: 5px;  letter-spacing: 0.12em; }
-
-/* ── ¿POR QUÉ NOSOTROS? ──────────────────────────── */
-.porque-num        { font-size: 9px; }
-.porque-card h3    { font-size: 7px;  line-height: 1.8; letter-spacing: 0.04em; }
-
-/* ── IDEAS DE ROL ─────────────────────────────────── */
-.idea-num          { font-size: clamp(5px, 1.3vw, 9px); }
-.idea-nivel        { font-size: 5px;  letter-spacing: 0.28em; padding: 5px 9px; }
-.idea-titulo       { font-size: 10px; line-height: 1.8; letter-spacing: 0.04em; }
-
-/* ── POSTULACIÓN ──────────────────────────────────── */
-.pcard-num         { font-size: 5px;  letter-spacing: 0.35em; }
-.pcard-title       { font-size: 10px; line-height: 1.8; letter-spacing: 0.04em; }
-.hier-rank         { font-size: 5px;  letter-spacing: 0.1em; }
-
-/* ── FOOTER ───────────────────────────────────────── */
-.footer-brand-name { font-size: 11px; line-height: 1.2; letter-spacing: 0.08em; }
-.footer-brand-sub  { font-size: 5px;  letter-spacing: 0.2em; }
-.footer-nav-title  { font-size: 5px;  letter-spacing: 0.35em; }
-.footer-nav-col a  { font-size: 6px;  letter-spacing: 0.18em; }
-.footer-copy       { font-size: 5px;  letter-spacing: 0.06em; }
-
-/* ── MODAL / FICHA ────────────────────────────────── */
-.wm-modal          { font-size: clamp(10px, 3vw, 20px); }
-.modal-close-btn   { font-size: 6px;  letter-spacing: 0.26em; }
-.fdoc-dept         { font-size: 8px;  line-height: 1.5; letter-spacing: 0.14em; }
-.fdoc-sub          { font-size: 5px;  letter-spacing: 0.28em; }
-.fdoc-type         { font-size: 6px;  letter-spacing: 0.18em; }
-.fdoc-cl-label     { font-size: 5px;  letter-spacing: 0.18em; }
-.fdoc-antec-badge  { font-size: 6px;  letter-spacing: 0.1em; padding: 3px 7px; }
-.fdoc-photo-num    { font-size: 8px; }
