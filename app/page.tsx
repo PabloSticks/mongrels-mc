@@ -169,12 +169,14 @@ Se ganó su lugar gracias a su inteligencia, discreción y habilidad para la obt
   {
     id: 10, alias: 'Kai', role: 'Member', pin: 'pin-blue', foto: 'fotos/Kai.png',
     ficha: {
-      nombre: 'Kai', apellido: 'Restrepo', dni: '27.854.199',
-      nacimiento: '05·MAR·2002', lugar: 'Vespucci, S.A.', clasificacion: 'BAJO RIESGO',
-      altura: '1.72 m', peso: '69 kg', ojos: 'Oscuros', cabello: 'Negro',
-      historia: 'El miembro más joven con parche completo. "Kai" probó su lealtad durante el período de prospect con eficiencia notable. Se sospecha de su participación en actividades de inteligencia e infiltración para el MC en otras organizaciones del submundo.',
+      nombre: 'Marcus', apellido: 'Kennard', dni: '483110653',
+      nacimiento: '27·JUL·2000', lugar: 'Houston', clasificacion: 'RIESGO MEDIO',
+      altura: '1.75 m', peso: '75 kg', ojos: 'Oscuros', cabello: 'Negro',
+      historia: `Marcus Kennard, conocido como Kai, nació el 27 de julio de 2000 en Houston, en una familia disfuncional dentro de un barrio de escasos recursos. Desde joven aprendió a moverse en ambientes difíciles, donde sobrevivir era más importante que cualquier otra cosa. Aun así, tenía una pasión distinta: era fanático de la mecánica y trabajaba en un taller de su barrio, donde encontraba momentos de calma. Su historial estaba marcado por el porte y tráfico ilegal de armas, un negocio que lo envolvió rápidamente. Las riñas en fiestas clandestinas eran casi una rutina, siempre terminaban con alguien herido y él saliendo ileso. Kai entendía la violencia como un lenguaje necesario para hacerse respetar.`,
       antecedentes: [
-        { fecha: '11·MAR·2023', desc: 'Detenido por alteración del orden público en sector céntrico. Liberado sin cargos.', badge: 'Orden Público', tipo: 'gray' },
+        { fecha: '12·JUN·2019', desc: 'Porte y tráfico ilegal de armas. Investigación por transporte y venta no autorizada.', badge: 'Armas', tipo: 'dark' },
+        { fecha: '03·SEP·2021', desc: 'Participación en riñas en fiestas ilegales con lesiones a terceros.', badge: 'Peleas', tipo: 'red' },
+        { fecha: '22·NOV·2023', desc: 'Acusado de extorsión a comerciantes locales; causa en investigación.', badge: 'Extorsión', tipo: 'red' },
       ]
     }
   },
