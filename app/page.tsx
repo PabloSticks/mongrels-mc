@@ -179,14 +179,15 @@ Se ganó su lugar gracias a su inteligencia, discreción y habilidad para la obt
     }
   },
   {
-    id: 11, alias: 'Draco', role: 'Prospect', pin: 'pin-blue', foto: 'fotos/draco.png',
+    id: 11, alias: 'Drako', role: 'Prospect', pin: 'pin-blue', foto: 'fotos/draco.png',
     ficha: {
-      nombre: 'Rodrigo', apellido: 'Espinoza', dni: '28.441.003',
-      nacimiento: '14·NOV·2003', lugar: 'Strawberry, S.A.', clasificacion: 'BAJO RIESGO',
-      altura: '1.81 m', peso: '82 kg', ojos: 'Oscuros', cabello: 'Negro',
-      historia: '"Draco" se encuentra en período de prospect, demostrando su valía ante el club. Historial previo limpio, lo que genera desconfianza entre algunos miembros veteranos. Actualmente bajo vigilancia constante del consejo interno.',
+      nombre: 'Demon', apellido: 'Salvatore', dni: '596814216',
+      nacimiento: '13·MAR·2001', lugar: 'Texas, EE.UU.', clasificacion: 'RIESGO MEDIO',
+      altura: '1.81 m', peso: '80 kg', ojos: 'Oscuros', cabello: 'Negro',
+      historia: `Demon Salvatore creció en Texas como hijo único, criado solo por su madre tras el abandono de su padre a los 8 años. Las dificultades económicas lo empujaron al mundo delictual, robando autos y moviendo droga, enamorado de la adrenalina de escapar. Fue en esa época, entre clases que nunca faltó por su madre, cuando conoció a Valeska Skywalker. Llegó a su vida sin aviso: una chica de mirada firme y pocas palabras que se sentó a su lado un día y simplemente no se fue. Se convirtió en la única persona ante quien Demon bajaba la guardia, su cómplice, su ancla, su mejor amiga. Sin quererlo, la fue introduciendo en ese lado oscuro, en decisiones que ninguno debería haber tomado. Una noche fueron detenidos juntos y la mirada devastada de su madre en la comisaría le rompió el alma, prometiendo no volver a hacerla llorar. Terminó sus estudios, encontró su pasión por las motocicletas y fue Valeska quien le abrió las puertas de Mongrels, donde comenzó como simple mecánico, se ganó la confianza de sus miembros con trabajo y lealtad, hasta convertirse hoy en prospecto. Con los años encontró en Mongrels algo más que un taller: una hermandad con sus propios mandamientos.`,
       antecedentes: [
-        { fecha: '20·ABR·2024', desc: 'Primera detención: presente en escena de disputa vinculada al MC. Liberado.', badge: 'Testigo', tipo: 'gray' },
+        { fecha: '09·JUL·2016', desc: 'Detenido por robo de vehículo durante la adolescencia junto a un grupo de conocidos.', badge: 'Robo', tipo: 'dark' },
+        { fecha: '14·FEB·2017', desc: 'Participó en actividades de distribución menor de sustancias ilegales durante su juventud.', badge: 'Drogas', tipo: 'red' },
       ]
     }
   },
@@ -215,33 +216,33 @@ Con 23 años, llega a la ciudad con un plan claro: hacerse un nombre sin hacer r
 const IDEAS = [
   {
     num: '01', nivel: 'SOCIAL', color: 'idea-social',
-    titulo: 'Ride & Cobra',
-    desc: 'El club organiza un ride por Los Santos exigiendo cuota de protección a locales en la ruta. Civiles, mecánicos, prensa y policías involucrados por igual.',
+    titulo: 'Rutas & Cobro',
+    desc: 'El club recorre Los Santos en una ruta organizada, estableciendo cobros de protección a negocios durante su recorrido. Civiles, mecánicos y LSPD terminan involucrados, generando dinámicas de confrontación y negociación.',
   },
   {
-    num: '02', nivel: 'CRIMINAL', color: 'idea-criminal',
-    titulo: 'Guerra de Territorio',
-    desc: 'Conflicto activo con otra organización por control de zona industrial. Negociación, ultimátums, y si falla, respuesta directa sobre el terreno.',
-  },
-  {
-    num: '03', nivel: 'INTERNO', color: 'idea-interno',
-    titulo: 'El Infiltrado',
-    desc: 'Un miembro sospecha que hay un informante en el club. Tensión interna, interrogatorios, traiciones. El consejo debe encontrar al topo antes que la LSPD actúe.',
-  },
-  {
-    num: '04', nivel: 'CRIMINAL', color: 'idea-criminal',
-    titulo: 'Ruta del Norte',
-    desc: 'Operativo de transporte de cargamento sensible por las rutas del condado. Pato lidera la logística. Un punto de control policial amenaza toda la operación.',
-  },
-  {
-    num: '05', nivel: 'SOCIAL', color: 'idea-social',
-    titulo: 'Initiation',
-    desc: 'Un nuevo aspirante debe completar pruebas definidas por el consejo para ganarse el parche. Cada miembro puede sumarse al proceso como evaluador o complicarle la vida.',
-  },
-  {
-    num: '06', nivel: 'POLÍTICO', color: 'idea-politico',
+    num: '02', nivel: 'POLÍTICO', color: 'idea-politico',
     titulo: 'Cumbre de Clanes',
-    desc: 'Reunión entre MCs rivales para negociar tratado o declarar guerra abierta. La presidenta negocia. El Sgt. at Arms vigila. Un movimiento en falso lo cambia todo.',
+    desc: 'Encuentro entre MCs rivales para negociar acuerdos o declarar conflicto abierto. La presidenta lidera la negociación mientras el Sgt. at Arms mantiene la seguridad; una sola decisión puede escalar a guerra abierta.',
+  },
+  {
+    num: '03', nivel: 'CRIMINAL', color: 'idea-criminal',
+    titulo: 'Ruta del Norte',
+    desc: 'Operativo de traslado de carga sensible por rutas del condado. La logística es clave, pero controles policiales y emboscadas de grupos rivales ponen en riesgo la operación.',
+  },
+  {
+    num: '04', nivel: 'SOCIAL', color: 'idea-social',
+    titulo: 'Carreras clandestinas & peleas',
+    desc: 'Circuitos de carreras ilegales y eventos de combate respaldados por el club. Apostadores, corredores y peleadores crean un caldo de tensión donde el control del evento aporta ingresos y reputación.',
+  },
+  {
+    num: '05', nivel: 'OPERATIVO', color: 'idea-operativo',
+    titulo: 'Logística en Ruta',
+    desc: 'Operaciones de entrega y transporte con red de distribución activa. Cada traslado abre la posibilidad de interceptaciones, robos y conflictos espontáneos en ruta, generando interacción constante.',
+  },
+  {
+    num: '06', nivel: 'ECONÓMICO', color: 'idea-business',
+    titulo: 'Negocios de Cobertura',
+    desc: 'Fachadas legales (talleres, bares, bodegas) que sirven como puntos de encuentro, lavado de dinero y logística. Funcionan como blancos para inspecciones o ataques rivales, además de sostener la red del MC.',
   },
 ]
 
@@ -692,39 +693,33 @@ export default function Home() {
           <h2 className="sec-title">¿Por qué<br />nosotros?</h2>
           <div className="sec-rule" />
           <p className="porque-intro">
-            No somos un grupo de amigos con motos. Somos una organización con estructura, protocolo y lore propio.
-            Esto es lo que nos diferencia.
+            No somos simplemente un grupo de amigos con motocicletas. Somos una organización con jerarquía, normas claras y un universo propio. Eso es lo que nos distingue.
           </p>
           <div className="porque-grid">
             <div className="porque-card">
               <div className="porque-num">01</div>
               <div className="porque-icon">⛓</div>
-              <h3>Hermandad real</h3>
-              <p>Jerarquía definida, rangos con significado real, ceremonia de ingreso y código interno. Cada hermano que entra, entra de verdad.</p>
+              <h3>Hermandad auténtica</h3>
+              <p>Contamos con una estructura definida, rangos con verdadero peso, rituales de ingreso y un código interno pudiendo entrar pero no salir.</p>
             </div>
             <div className="porque-card">
               <div className="porque-num">02</div>
               <div className="porque-icon">🔥</div>
-              <h3>Rol criminal auténtico</h3>
-              <p>Extorsión, tráfico, territorio, acuerdos y traiciones. Generamos drama real que activa el roleplay de policías, rivales y civiles.</p>
+              <h3>Rol criminal sólido</h3>
+              <p>Extorsiones, tráfico, control de territorio, alianzas y traiciones ejecutadas dentro de un marco consistente. Operamos con lógica interna, continuidad y consecuencias.</p>
             </div>
             <div className="porque-card">
               <div className="porque-num">03</div>
               <div className="porque-icon">🏍</div>
               <h3>Cultura MC completa</h3>
-              <p>Parches, rides organizados, clubhouse, ceremonias y jerga propia. La experiencia de un Motorcycle Club de verdad.</p>
+              <p>Parches, rutas organizadas de forma periódica, clubhouse, ceremonias y un lenguaje propio. Una experiencia fiel a lo que representa un MC.</p>
             </div>
             <div className="porque-card">
               <div className="porque-num">04</div>
               <div className="porque-icon">🗺</div>
               <h3>Impacto en el servidor</h3>
-              <p>Cada operación que hacemos activa el roleplay de múltiples facciones. Somos el motor que mueve el submundo de San Andreas.</p>
+              <p>Cada acción que realizamos tiene la intención de crear la interacción entre múltiples facciones. Somos un eje que dinamiza el submundo de San Andreas.</p>
             </div>
-          </div>
-          <div className="porque-bottom">
-            <div className="porque-bottom-line" />
-            <div className="porque-quote">&ldquo;No pedimos permiso. No pedimos disculpas.&rdquo;</div>
-            <div className="porque-bottom-line" />
           </div>
         </div>
       </section>
