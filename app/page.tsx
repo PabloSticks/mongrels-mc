@@ -734,47 +734,48 @@ export default function Home() {
           <p className="post-header-note">Mongrels MC postula como organización de Motorcycle Club en el servidor, ofreciendo dinámica criminal y social auténtica en San Andreas.</p>
           <div className="post-cards">
             <div className="pcard">
-              <div className="pcard-num">01 · Tipo de local</div>
+              <div className="pcard-num">01 · TIPO DE LOCAL</div>
               <div className="pcard-title">Motorcycle Club</div>
-              <p>Organización de tipo <strong style={{ color: 'var(--white2)' }}>Motorcycle Club (MC)</strong> — hermandad de motociclistas con estructura jerárquica, actividades de rol social y criminal. Sede física con clubhouse, rutas organizadas y presencia en el submundo de San Andreas.</p>
+              <p>Fraternidad de motociclistas organizada de forma jerárquica, con actividades que combinan tanto el rol social como el ámbito criminal, buscando una integración equilibrada entre ambos. Cuenta con una sede estable tipo, realiza rutas planificadas y mantiene presencia activa en el submundo de San Andreas.</p>
             </div>
             <div className="pcard">
-              <div className="pcard-num">02 · Ubicación</div>
+              <div className="pcard-num">02 · UBICACIÓN</div>
               <div className="pcard-title">Sede del Club</div>
-              <p>Buscamos establecer nuestro <strong style={{ color: 'var(--white2)' }}>clubhouse</strong> en zona industrial o periférica de Los Santos — espacio con garaje para motos, bar interno y sala de reuniones. Abiertos a propuesta de mapeo externo acorde a la identidad del club.</p>
+              <p>Proyectamos establecer nuestro clubhouse en Mirror Park, Los Santos, aprovechando su entorno residencial y su identidad urbana característica dentro de la ciudad. La sede contemplará un espacio funcional con garaje para motocicletas, bar interno y sala de reuniones, buscando integrarse de forma discreta con el sector mientras se mantiene la esencia del club. Se consideran además propuestas de mapeo externo que potencien su estética y coherencia con la identidad del MC.</p>
             </div>
             <div className="pcard full">
-              <div className="pcard-num">03 · Contribución al servidor</div>
+              <div className="pcard-num">03 · CONTRIBUCIÓN AL SERVIDOR</div>
               <div className="pcard-title">Aporte a la comunidad</div>
               <ul>
-                <li>Dinamismo criminal organizado: tráfico, protección, disputas de territorio — genera roleplay activo para policías, rivales y aliados.</li>
-                <li>Rides y concentraciones masivos: eventos que involucran toda la comunidad — civiles, mecánicos, prensa, fuerzas del orden.</li>
-                <li>Red de economía paralela: contratos, extorsiones, servicios clandestinos que nutren el submundo del servidor.</li>
-                <li>Cultura MC auténtica: vestimenta, jerga, rituales de ingreso, rangos y protocolos que enriquecen la inmersión.</li>
-                <li>Rol social: el clubhouse como punto de encuentro, bar clandestino y espacio de eventos para toda la comunidad.</li>
+                <li>Actividad criminal estructurada: operaciones de tráfico, protección y conflictos territoriales que impulsan una actividad constante entre policías, rivales y aliados.</li>
+                <li>Rutas y encuentros multitudinarios: se organizan rutas y encuentros, tanto en carretera como en el clubhouse, orientados a convocar e integrar a distintos actores de la comunidad.</li>
+                <li>Flujo económico alternativo: se brindan distintos servicios —como acuerdos, cobros de extorsión, entre otros— que aportan dinamismo a la actividad delictual.</li>
+                <li>Cultura biker integral: desarrollo de prácticas propias del mundo MC, incluyendo códigos, jerarquías, rituales y actividades tanto en el ámbito civil como delictual, reforzando la identidad del club.</li>
+                <li>Rol social: Local como punto de encuentro, bar encubierto y escenario para instancias abiertas que fomentan la participación comunitaria.</li>
               </ul>
             </div>
             <div className="pcard">
-              <div className="pcard-num">04 · Proyección y objetivos</div>
+              <div className="pcard-num">04 · PROYECCIÓN Y OBJETIVOS</div>
               <div className="pcard-title">Visión y metas</div>
               <ul>
-                <li><strong style={{ color: 'var(--white2)' }}>Corto plazo:</strong> consolidar sede, protocolos internos y primeras alianzas.</li>
-                <li><strong style={{ color: 'var(--white2)' }}>Mediano plazo:</strong> ganar territorio, ampliar membresía con prospects.</li>
-                <li><strong style={{ color: 'var(--white2)' }}>Largo plazo:</strong> organización de referencia con lore propio y eventos recurrentes.</li>
+                <li><strong style={{ color: 'var(--white2)' }}>Corto plazo:</strong> consolidar nuestra sede y afirmar presencia territorial, estableciendo las bases operativas del club.</li>
+                <li><strong style={{ color: 'var(--white2)' }}>Mediano plazo:</strong> consolidar el control de zonas clave y estructurar una membresía activa y alineada a los códigos del club.</li>
+                <li><strong style={{ color: 'var(--white2)' }}>Largo plazo:</strong> convertirse en un MC reconocido y respetado, con territorio definido, historia propia y peso dentro del equilibrio de la ciudad.</li>
               </ul>
             </div>
             <div className="pcard">
-              <div className="pcard-num">05 · Jefatura y jerarquía</div>
+              <div className="pcard-num">05 · JEFATURA Y JERARQUÍA</div>
               <div className="pcard-title">Estructura interna</div>
               <div className="hier-table">
                 {([
-                  ['President', 'Máxima autoridad. Decisiones estratégicas y representación.'],
-                  ['Vice President', 'Soporte al President. Mando en su ausencia.'],
-                  ['Sgt. at Arms', 'Seguridad y disciplina. Brazo ejecutor del club.'],
-                  ['Road Captain', 'Logística de rutas y rides.'],
-                  ['Treasurer / Secretary', 'Finanzas y registros del club.'],
-                  ['Members', 'Hermanos plenos con parche completo.'],
-                  ['Prospect', 'En período de prueba. Sin voto ni parche.'],
+                  ['President', 'Máxima autoridad del MC. Quien mantiene unido al club y representa su voz oficial.'],
+                  ['Vice President', 'Mano derecha de la Presidenta.'],
+                  ['Sergeant at Arms', 'Es el responsable del orden, la disciplina y la seguridad.'],
+                  ['Secretary', 'Administrador y encargado del orden interno.'],
+                  ['Treasurer', 'Encargado de las finanzas.'],
+                  ['Road Captain', 'Marca el paso y vela por la seguridad en las rutas.'],
+                  ['Members', 'Miembro activo del club.'],
+                  ['Prospect', 'En período de prueba del MC. Sin voto.'],
                 ] as [string, string][]).map(([rank, desc]) => (
                   <div key={rank} className="hier-row">
                     <div className="hier-rank">{rank}</div>
