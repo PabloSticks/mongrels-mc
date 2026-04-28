@@ -248,6 +248,24 @@ const IDEAS = [
   },
 ]
 
+const HISTORY_IMAGES = [
+  '/foticos/history1.png',
+  '/foticos/history2.png',
+  '/foticos/history3.png',
+  '/foticos/history4.png',
+]
+
+const GALLERY_IMAGES = [
+  '/foticos/galeria1.png',
+  '/foticos/galeria2.png',
+  '/foticos/galeria3.png',
+  '/foticos/galeria4.png',
+  '/foticos/galeria5.png',
+  '/foticos/galeria6.png',
+  '/foticos/galeria7.png',
+  '/foticos/galeria8.png',
+]
+
 /* ═══════════════════════════════════════════════
    FICHA MODAL COMPONENT
 ═══════════════════════════════════════════════ */
@@ -427,10 +445,33 @@ function FichaModal({ member, onClose }: { member: Member; onClose: () => void }
 ═══════════════════════════════════════════════ */
 export default function Home() {
   const [activeMember, setActiveMember] = useState<Member | null>(null)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
+  useEffect(() => {
+    document.body.style.overflow = mobileMenuOpen ? 'hidden' : ''
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [mobileMenuOpen])
 
   return (
     <>
       {activeMember && <FichaModal member={activeMember} onClose={() => setActiveMember(null)} />}
+      {mobileMenuOpen && (
+        <div className="mobile-nav-overlay" onClick={() => setMobileMenuOpen(false)}>
+          <div className="mobile-nav-panel" onClick={e => e.stopPropagation()}>
+            <button className="mobile-nav-close" onClick={() => setMobileMenuOpen(false)} type="button">
+              Cerrar
+            </button>
+            <a href="#historia" onClick={() => setMobileMenuOpen(false)}>Historia</a>
+            <a href="#miembros" onClick={() => setMobileMenuOpen(false)}>Miembros</a>
+            <a href="#porque" onClick={() => setMobileMenuOpen(false)}>¿Por qué?</a>
+            <a href="#ideas" onClick={() => setMobileMenuOpen(false)}>Ideas de Rol</a>
+            <a href="#postulacion" onClick={() => setMobileMenuOpen(false)}>Postulación</a>
+            <a href="#galeria" onClick={() => setMobileMenuOpen(false)}>Galería</a>
+          </div>
+        </div>
+      )}
 
       {/* ══ NAV ══ */}
       <nav className="mc-nav">
@@ -446,6 +487,17 @@ export default function Home() {
               <div className="nav-brand-sub">Sede San Andreas · FiveM RP</div>
             </div>
           </a>
+          <button
+            type="button"
+            className="nav-hamburger"
+            aria-label="Abrir menú"
+            aria-expanded={mobileMenuOpen}
+            onClick={() => setMobileMenuOpen((value) => !value)}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
           <ul className="nav-links">
             <li><a href="#historia"><Image src="/fotos/1porcent.png" alt="1%" width={22} height={28} className="nav-link-icon" />Historia</a></li>
             <li><a href="#miembros"><Image src="/fotos/1porcent.png" alt="1%" width={22} height={28} className="nav-link-icon" />Miembros</a></li>
@@ -522,6 +574,7 @@ export default function Home() {
               </div>
               <div className="hist-img-col hist-img-col-placeholder">
                 <div className="hist-img-overlay" />
+                <img src={HISTORY_IMAGES[0]} alt="Historia 2017" />
                 <div className="img-year">2017</div>
               </div>
             </div>
@@ -534,6 +587,7 @@ export default function Home() {
               </div>
               <div className="hist-img-col hist-img-col-placeholder">
                 <div className="hist-img-overlay" />
+                <img src={HISTORY_IMAGES[1]} alt="Historia 2019" />
                 <div className="img-year">2019</div>
               </div>
             </div>
@@ -546,6 +600,7 @@ export default function Home() {
               </div>
               <div className="hist-img-col hist-img-col-placeholder">
                 <div className="hist-img-overlay" />
+                <img src={HISTORY_IMAGES[2]} alt="Historia 2021-22" />
                 <div className="img-year">2021-22</div>
               </div>
             </div>
@@ -558,6 +613,7 @@ export default function Home() {
               </div>
               <div className="hist-img-col hist-img-col-placeholder">
                 <div className="hist-img-overlay" />
+                <img src={HISTORY_IMAGES[3]} alt="Historia 2027" />
                 <div className="img-year">2027</div>
               </div>
             </div>
@@ -838,15 +894,14 @@ export default function Home() {
           <h2 className="sec-title">Galería</h2>
           <div className="sec-rule" />
           <div className="gal-mosaic">
-            <div className="gcell gc1 gcell-placeholder" />
-            <div className="gcell gc2 gcell-placeholder" />
-            <div className="gcell gc3 gcell-placeholder" />
-            <div className="gcell gc4 gcell-placeholder" />
-            <div className="gcell gc5 gcell-placeholder" />
-            <div className="gcell gc6 gcell-placeholder" />
-            <div className="gcell gc7 gcell-placeholder" />
-            <div className="gcell gc8 gcell-placeholder" />
-            <div className="gcell gc9 gcell-placeholder" />
+            {GALLERY_IMAGES.map((src, index) => (
+              <div
+                key={src}
+                className={`gcell gc${index + 1} gcell-placeholder`}
+              >
+                <img src={src} alt={`Galería ${index + 1}`} />
+              </div>
+            ))}
           </div>
         </div>
       </section>
