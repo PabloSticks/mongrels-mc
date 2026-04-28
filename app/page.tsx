@@ -156,13 +156,13 @@ Se ganó su lugar gracias a su inteligencia, discreción y habilidad para la obt
   {
     id: 9, alias: 'Fufe', role: 'Member', pin: 'pin-blue', foto: 'fotos/Fufe.png',
     ficha: {
-      nombre: 'Felipe', apellido: 'Urra', dni: '22.193.047',
-      nacimiento: '19·JUN·1996', lugar: 'Los Santos, S.A.', clasificacion: 'RIESGO MEDIO',
-      altura: '1.76 m', peso: '78 kg', ojos: 'Marrones', cabello: 'Oscuro',
-      historia: '"Fufe" es miembro activo con parche completo. Participó en múltiples operaciones de protección y logística del club. Leal a la directiva sin cuestionamientos. Brazo ejecutor en disputas menores del MC contra organizaciones rivales.',
+      nombre: 'Ethan', apellido: 'Blake', dni: '21.947.362-8',
+      nacimiento: '18·SEP·2003', lugar: 'Chile', clasificacion: 'RIESGO MEDIO',
+      altura: '1.80 m', peso: '74 kg', ojos: 'Marrones', cabello: 'Oscuro',
+      historia: 'En Chile, Ethan creció entre pasajes y motores viejos que rugían más fuerte que cualquier consejo. Desde chico aprendió a moverse solo, confiando únicamente en su mascota Fufe, la única que nunca lo dejó. Cuando la perdió, adoptó ese nombre como símbolo de lealtad. Con el tiempo, las motos empezaron a llamar su atención, viendo en ellas una forma de escape y pertenencia. Buscando una población donde asentarse, empezó a acercarse al ambiente biker. Así fue como conoció a la Mongrels MC, un club donde el respeto se gana rodando y cumpliendo. Fufe no habla de más, pero siempre responde cuando se le necesita. Hoy intenta hacerse un nombre en la carretera, llevando el apodo Fufe con orgullo.',
       antecedentes: [
-        { fecha: '16·JUL·2020', desc: 'Detenido en control preventivo portando arma sin documentación válida.', badge: 'Armas', tipo: 'dark' },
-        { fecha: '04·DIC·2022', desc: 'Riña con integrantes de organización rival en bar del sector Hawick.', badge: 'Violencia', tipo: 'red' },
+        { fecha: '14·ABR·2021', desc: 'Detención por robo a establecimiento comercial. Registro policial activo.', badge: 'Robo', tipo: 'dark' },
+        { fecha: '09·NOV·2022', desc: 'Detención por porte de arma de bajo calibre sin autorización.', badge: 'Armas', tipo: 'red' },
       ]
     }
   },

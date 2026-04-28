@@ -1589,3 +1589,537 @@ body::after {
   font-size: 10px; color: #7a6a50;
   word-spacing: 0.1em;
 }
+
+/* ══════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════ */
+@media (max-width: 1200px) {
+  .nav-inner,
+  .container {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .porque-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ideas-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .post-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .pcard.full {
+    grid-column: auto;
+  }
+
+  .gal-mosaic {
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: 150px;
+  }
+
+  .gc1,
+  .gc2,
+  .gc3,
+  .gc4,
+  .gc5,
+  .gc6,
+  .gc7,
+  .gc8,
+  .gc9 {
+    grid-column: span 3;
+    grid-row: span 1;
+  }
+
+  .footer-main {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .footer-brand-col,
+  .footer-patch-col {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+@media (max-width: 900px) {
+  .mc-nav {
+    height: auto;
+  }
+
+  .nav-inner {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    gap: 10px;
+  }
+
+  .nav-links {
+    order: 3;
+    width: 100%;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 2px;
+    scrollbar-width: none;
+  }
+
+  .nav-links::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-links li a {
+    height: 36px;
+    padding: 0 12px;
+  }
+
+  .hero {
+    padding-top: 88px;
+    padding-bottom: 56px;
+    min-height: 100svh;
+  }
+
+  .hero-content {
+    width: min(100%, 760px);
+    padding: 0 16px;
+  }
+
+  .hero-title {
+    font-size: clamp(44px, 14vw, 110px);
+    letter-spacing: 0.12em;
+  }
+
+  .hero-sub {
+    font-size: 11px;
+    letter-spacing: 0.28em;
+  }
+
+  .hero-desc {
+    max-width: 100%;
+    font-size: 15px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .hero-actions a {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .section-top {
+    width: min(100%, 760px);
+    padding: 0 16px;
+  }
+
+  .sec {
+    padding: 80px 0;
+  }
+
+  .sec-title {
+    font-size: clamp(44px, 10vw, 92px);
+    line-height: 0.98;
+  }
+
+  .sec-rule {
+    margin-top: 18px;
+  }
+
+  .porque-intro,
+  .ideas-intro,
+  .post-header-note {
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  .porque-grid,
+  .ideas-grid,
+  .post-cards {
+    margin-top: 36px;
+  }
+
+  .porque-card,
+  .idea-card,
+  .pcard {
+    padding: 28px 22px;
+  }
+
+  .porque-grid,
+  .ideas-grid {
+    gap: 1px;
+  }
+
+  .gal-mosaic {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 170px;
+  }
+
+  .gc1,
+  .gc2,
+  .gc3,
+  .gc4,
+  .gc5,
+  .gc6,
+  .gc7,
+  .gc8,
+  .gc9 {
+    grid-column: span 1;
+  }
+
+  .footer-main {
+    gap: 22px;
+  }
+
+  .fdoc-header,
+  .fdoc-body,
+  .fdoc-footer,
+  .fdoc-2col,
+  .fdoc-phys,
+  .fdoc-antec-item {
+    grid-template-columns: 1fr;
+  }
+
+  .fdoc-header {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .fdoc-case {
+    text-align: center;
+    padding: 0 18px 14px;
+  }
+
+  .fdoc-body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .fdoc-left {
+    border-right: none;
+    border-bottom: 2px solid #c8b89a;
+  }
+
+  .fdoc-right {
+    padding: 20px 18px 22px;
+  }
+
+  .fdoc-antec-item {
+    gap: 8px;
+    justify-items: start;
+  }
+
+  .fdoc-antec-badge {
+    justify-self: start;
+  }
+}
+
+@media (max-width: 640px) {
+  .nav-inner,
+  .container,
+  .section-top {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .nav-brand-sub,
+  .nav-brand-name {
+    white-space: normal;
+  }
+
+  .nav-one-pct-img,
+  .nav-logo-img {
+    width: 22px;
+    height: 22px;
+  }
+
+  .nav-links li a {
+    font-size: 8px;
+    letter-spacing: 0.18em;
+  }
+
+  .hero-title {
+    letter-spacing: 0.08em;
+  }
+
+  .hero-sub {
+    letter-spacing: 0.18em;
+    font-size: 10px;
+  }
+
+  .hero-desc,
+  .porque-card p,
+  .idea-desc,
+  .pcard p,
+  .pcard ul li,
+  .hier-desc,
+  .fdoc-historia-text,
+  .fdoc-antec-desc,
+  .footer-copy {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .porque-grid,
+  .ideas-grid,
+  .post-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .porque-card,
+  .idea-card,
+  .pcard {
+    padding: 22px 18px;
+  }
+
+  .porque-card h3,
+  .idea-titulo,
+  .pcard-title {
+    line-height: 1.15;
+  }
+
+  .porque-quote {
+    white-space: normal;
+    font-size: 18px;
+  }
+
+  .gal-mosaic {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 180px;
+  }
+
+  .footer-socials {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .footer-brand-col,
+  .footer-patch-col,
+  .footer-nav-col {
+    align-items: center;
+  }
+
+  .modal-overlay {
+    padding: 16px 12px;
+  }
+
+  .modal-close-btn {
+    width: 100%;
+    justify-content: center;
+    letter-spacing: 0.18em;
+  }
+
+  .fdoc-badge {
+    padding: 10px 10px 0;
+  }
+
+  .fdoc-logo-city,
+  .fdoc-logo-lspd {
+    width: 46px;
+    height: 46px;
+  }
+
+  .fdoc-dept {
+    font-size: 11px;
+  }
+
+  .fdoc-sub {
+    font-size: 7px;
+  }
+
+  .fdoc-type {
+    font-size: 9px;
+  }
+
+  .fdoc-photo-num,
+  .fdoc-cl-label,
+  .fdoc-cl-val,
+  .fdoc-phys-lbl,
+  .fdoc-field-label,
+  .fdoc-field-val,
+  .fdoc-footer-stamp,
+  .fdoc-footer-conf,
+  .fdoc-footer-sig {
+    letter-spacing: 0.08em;
+  }
+
+  .fdoc-antec-item {
+    padding: 10px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mc-nav {
+    height: auto;
+  }
+
+  .nav-inner {
+    gap: 8px;
+  }
+
+  .nav-brand {
+    gap: 6px;
+  }
+
+  .nav-brand-sub {
+    font-size: 6px;
+    letter-spacing: 0.16em;
+  }
+
+  .nav-links li a {
+    padding: 0 10px;
+    gap: 4px;
+  }
+
+  .hero {
+    padding-top: 96px;
+  }
+
+  .hero-title {
+    font-size: clamp(30px, 14vw, 56px);
+    line-height: 0.98;
+  }
+
+  .hero-watermark {
+    bottom: -16px;
+  }
+
+  .sec {
+    padding: 68px 0;
+  }
+
+  .sec-title {
+    font-size: clamp(26px, 9vw, 40px);
+    line-height: 1.02;
+  }
+
+  .board-container {
+    margin-top: 24px;
+    padding: 0 16px;
+  }
+
+  .board-frame {
+    padding: 10px;
+  }
+
+  .cork-surface {
+    min-height: auto;
+    padding: 18px 12px 28px;
+  }
+
+  .police-header,
+  .board-strings-svg,
+  .conf-stamp,
+  .sticky,
+  .doc-paper,
+  .board-map,
+  .bcard-hover-label {
+    display: none;
+  }
+
+  .board-grid {
+    margin-top: 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .bcard,
+  .bcard:hover {
+    transform: none !important;
+  }
+
+  .photo-wrap {
+    padding-bottom: 14px;
+  }
+
+  .p-name {
+    font-size: 14px;
+  }
+
+  .p-role {
+    font-size: 10px;
+  }
+
+  .ev-num {
+    font-size: 7px;
+  }
+
+  .hist-blocks {
+    margin-top: 36px;
+  }
+
+  .hist-block,
+  .hist-block.rev {
+    grid-template-columns: 1fr;
+  }
+
+  .hist-text,
+  .hist-block.rev .hist-text {
+    order: 0;
+    border-left: none;
+    border-right: none;
+    padding: 28px 20px;
+  }
+
+  .hist-img-col {
+    min-height: 220px;
+  }
+
+  .hist-text h3 {
+    font-size: 4.5px;
+    line-height: 1.15;
+  }
+
+  .hist-text p {
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  .porque-grid,
+  .ideas-grid,
+  .post-cards {
+    margin-top: 28px;
+  }
+
+  .idea-nivel,
+  .pcard-num,
+  .hier-rank,
+  .fdoc-antec-badge {
+    font-size: 8px;
+  }
+
+  .hier-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .fdoc-historia,
+  .fdoc-antec-item {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .fdoc-phys {
+    gap: 8px;
+  }
+
+  .fdoc-phys-cell {
+    padding: 8px 10px;
+  }
+
+  .fdoc-photo-ph span {
+    font-size: 8px;
+  }
+
+  .fdoc-fp-row {
+    gap: 6px;
+  }
+}
