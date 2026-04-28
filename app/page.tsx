@@ -82,18 +82,31 @@ Y desde cero, en una nueva ciudad, comenzarán a levantar Mongrel’s otra vez c
     }
   },
   {
-    id: 5, alias: 'Pato', role: 'Road Captain', pin: 'pin-yellow', foto: 'fotos/Pato.png',
+    id: 5, alias: 'Patoka', role: 'Road Captain', pin: 'pin-yellow', foto: 'fotos/Pato.png',
     ficha: {
-      nombre: 'Patricio', apellido: 'Venegas', dni: '17.429.883',
-      nacimiento: '30·AGO·1992', lugar: 'Sandy Shores, S.A.', clasificacion: 'RIESGO MEDIO',
-      altura: '1.80 m', peso: '85 kg', ojos: 'Claros', cabello: 'Rubio',
-      historia: '"Pato" coordina todas las rutas y rides del club. Conoce cada camino de San Andreas como la palma de su mano. Sospechoso de organizar corredores clandestinos para transporte de mercancía ilegal hacia el interior del estado. Nunca ha sido sorprendido in fraganti.',
+      nombre: 'Karlos', apellido: 'Garrido', dni: '3125641',
+      nacimiento: '24·ENE·2000', lugar: 'San Andreas', clasificacion: 'RIESGO MEDIO',
+      altura: '1.75 m', peso: '80 kg', ojos: 'Café', cabello: 'Blanco',
+      historia: `Karlos Garrido llegó al Moto Club tras una vida marcada por la mecánica y la supervivencia en la carretera.
+Con 20 años, trabajando en el taller Mongrel’s, logró ganarse la confianza del grupo.
+Ingresó como prospect, iniciando desde abajo y demostrando lealtad mediante diversas tareas.
+Durante esta etapa participó en actividades ilícitas como robos y tráfico, consolidando su posición.
+Su disciplina y experiencia en rutas lo hicieron destacar rápidamente dentro del club.
+Gracias a su compromiso, ascendió hasta el rol de Road Captain.
+En este cargo, se encargaba de planificar rutas tanto para distracción como para operaciones ilegales.
+También coordinaba encuentros con otras bandas, asegurando logística y discreción.
+Su principal responsabilidad era resguardar la seguridad del grupo durante los trayectos.
+Así, Karlos pasó de ser un novato a una pieza clave en la estructura operativa del Moto Club.`,
       antecedentes: [
-        { fecha: '14·ABR·2017', desc: 'Conducción temeraria y evasión policial en autopista norte. Multa y suspensión.', badge: 'Tránsito', tipo: 'dark' },
-        { fecha: '22·NOV·2021', desc: 'Sospechoso en operativo de transporte ilegal. Sin cargos formalizados.', badge: 'Tráfico', tipo: 'gray' },
-      ]
-    }
-  },
+-        { fecha: '14·ABR·2017', desc: 'Conducción temeraria y evasión policial en autopista norte. Multa y suspensión.', badge: 'Tránsito', tipo: 'dark' },
+-        { fecha: '22·NOV·2021', desc: 'Sospechoso en operativo de transporte ilegal. Sin cargos formalizados.', badge: 'Tráfico', tipo: 'gray' },
++        { fecha: '14·ABR·2017', desc: 'Conducción a exceso de velocidad en zona urbana, poniendo en riesgo a peatones y otros conductores.', badge: 'Tránsito', tipo: 'dark' },
++        { fecha: '22·NOV·2021', desc: 'Evasión de control policial mediante fuga en motocicleta.', badge: 'Evasión', tipo: 'red' },
++        { fecha: '09·MAY·2022', desc: 'Conducción bajo la influencia de alcohol o sustancias, agravada por exceso de velocidad.', badge: 'Alcohol', tipo: 'red' },
++        { fecha: '18·AGO·2023', desc: 'Uso de vehículo con placas adulteradas para evitar identificación.', badge: 'Placas', tipo: 'gray' },
+       ]
+     }
+   },
   {
     id: 6, alias: 'Kayn', role: 'Treasurer', pin: 'pin-white', foto: 'fotos/Kayn.png',
     ficha: {
@@ -112,12 +125,22 @@ Y desde cero, en una nueva ciudad, comenzarán a levantar Mongrel’s otra vez c
   {
     id: 7, alias: 'Iris', role: 'Secretary', pin: 'pin-white', foto: 'fotos/Iris.png',
     ficha: {
-      nombre: 'Iris', apellido: 'Contreras', dni: '24.782.316',
-      nacimiento: '27·OCT·1998', lugar: 'Rockford Hills, S.A.', clasificacion: 'BAJO RIESGO',
-      altura: '1.68 m', peso: '60 kg', ojos: 'Verdes', cabello: 'Castaño',
-      historia: 'Iris Contreras gestiona la documentación, comunicaciones y agenda interna del club. Su discreción la convierte en activo invaluable para los Mongrels. Sin antecedentes mayores, se sospecha del manejo de canales de comunicación encriptados y archivos comprometedores de la organización.',
+      nombre: 'Valeska', apellido: 'Skywalker', dni: '593817264',
+      nacimiento: '26·DIC·2001', lugar: 'Texas', clasificacion: 'BAJO RIESGO',
+      altura: '1.72 m', peso: '62 kg', ojos: 'Verdes', cabello: 'Castaño',
+      historia: `Valeska "Iris" Skywalker creció siendo la mayor de dos hermanos, marcada por la muerte de su madre a los 5 años y aprendiendo demasiado pronto que la vida no da segundas oportunidades.
+Su padre, firme y silencioso, sostuvo el hogar mientras ella cargaba con responsabilidades como el cuidado de sus hermanos menores.
+Durante su adolescencia conoció a su mejor amigo, quien la introdujo a un entorno de escape, rodeado de riesgos, drogas y malas decisiones.
+Bajo la influencia de ese mundo, participó en el robo de un vehículo junto a un grupo de amigos, siendo posteriormente detenida por la policía.
+Su padre fue quien la recogió, marcando ese día con una reprimenda que cambió su rumbo, llevándola a trabajar junto a él en el taller.
+Entre el olor a aceite y metal, el taller que trabajaba su padre se convirtió en su refugio y también en su escuela.
+Lo que empezó como indiferencia terminó transformándose en amor y respeto por las motocicletas.
+Con los años encontró en Mongrels algo más que un taller: una hermandad con sus propios mandamientos.
+Iris se movía en silencio, observando, escuchando y aprendiendo todo lo que otros ignoraban.
+Se ganó su lugar gracias a su inteligencia, discreción y habilidad para la obtención de información. Su lealtad y eficacia le permitieron acercarse a figuras clave dentro del MC.`,
       antecedentes: [
-        { fecha: '03·SEP·2023', desc: 'Interrogada como testigo en caso vinculado a Mongrels MC. No imputada.', badge: 'Testigo', tipo: 'gray' },
+        { fecha: '14·JUL·2018', desc: 'Robo de vehículo en compañía de terceros. Recuperación policial posterior al hecho.', badge: 'Robo', tipo: 'red' },
+        { fecha: '14·JUL·2018', desc: 'Detención policial tras el robo de un vehículo. Liberada luego de la intervención de su padre.', badge: 'Detención', tipo: 'gray' },
       ]
     }
   },
