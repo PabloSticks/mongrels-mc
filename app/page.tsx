@@ -1,64 +1,471 @@
+'use client'
 import Image from 'next/image'
+import { useState, useEffect } from 'react'
 
-const MEMBERS = [
-  { id: 1,  alias: 'Nyx',       role: 'President',        pin: 'pin-red' , foto: 'fotos/presiwekita.png'    },
-  { id: 2,  alias: 'Nahuel',    role: 'Vice President',   pin: 'pin-red', foto: 'fotos/vice.png'    },
-  { id: 3,  alias: 'Ecko',      role: 'Sgt. at Arms',     pin: 'pin-yellow', foto: 'fotos/exko.png' },
-  { id: 4,  alias: 'Aka',       role: 'Sgt. at Arms',   pin: 'pin-yellow', foto: 'fotos/wekita.png' },
-  { id: 5,  alias: 'Pato',      role: 'Road Captain',   pin: 'pin-yellow', foto: 'fotos/pato.png' },
-  { id: 6,  alias: 'Kayn',      role: 'Treasurer',      pin: 'pin-white', foto: 'fotos/camilitoxxx1369.png'  },
-  { id: 7,  alias: 'Iris',      role: 'Secretary',      pin: 'pin-white', foto: 'fotos/iris.png'  },
-  { id: 8,  alias: 'K.',        role: 'Loyal',         pin: 'pin-blue', foto: 'fotos/k..png'   },
-  { id: 9,  alias: 'Fufe',      role: 'Member',         pin: 'pin-blue', foto: 'fotos/fufexxx.png'   },
-  { id: 10, alias: 'Kai',       role: 'Member',         pin: 'pin-blue', foto: 'fotos/maricon.png'   },
-  { id: 11, alias: 'Draco',     role: 'Prospect',         pin: 'pin-blue', foto: 'fotos/draco.png'   },
-  { id: 12, alias: 'Pulguita',  role: 'Prospect',       pin: 'pin-white', foto: 'fotos/pulgon.png' },
+/* ═══════════════════════════════════════════════
+   TYPES
+═══════════════════════════════════════════════ */
+type TipoBadge = 'red' | 'dark' | 'gray'
+interface Antecedente { fecha: string; desc: string; badge: string; tipo: TipoBadge }
+interface Ficha {
+  nombre: string; apellido: string; dni: string; nacimiento: string; lugar: string
+  clasificacion: string; altura: string; peso: string; ojos: string; cabello: string
+  historia: string; antecedentes: Antecedente[]
+}
+interface Member { id: number; alias: string; role: string; pin: string; foto: string; ficha: Ficha }
+
+/* ═══════════════════════════════════════════════
+   MEMBERS DATA
+═══════════════════════════════════════════════ */
+const MEMBERS: Member[] = [
+  {
+    id: 1, alias: 'Nyx', role: 'President', pin: 'pin-red', foto: 'fotos/Nyx.png',
+    ficha: {
+      nombre: 'Valentina', apellido: 'Morales', dni: '21.847.392',
+      nacimiento: '08·MAY·1996', lugar: 'Los Santos, S.A.', clasificacion: 'ALTO RIESGO',
+      altura: '1.71 m', peso: '62 kg', ojos: 'Negros', cabello: 'Negro',
+      historia: 'Valentina Morales, alias "Nyx", lidera los Mongrels MC con mano de hierro desde su fundación en 2015. Surgida del submundo sur de Los Santos, consolidó la organización con inteligencia estratégica y lealtad fanática de sus hermanos. Su red de contactos abarca operaciones de tráfico, extorsión y acuerdos clandestinos en todo San Andreas. Temida y respetada a partes iguales. La LSPD la considera objetivo prioritario de la División de Crimen Organizado.',
+      antecedentes: [
+        { fecha: '12·ENE·2019', desc: 'Asociación ilícita con organización criminal. Liberada por falta de pruebas directas.', badge: 'Crimen Org.', tipo: 'dark' },
+        { fecha: '30·ABR·2021', desc: 'Extorsión a negocios en zona sur de Los Santos. Caso cerrado sin condena formal.', badge: 'Extorsión', tipo: 'red' },
+        { fecha: '14·AGO·2023', desc: 'Resistencia a la autoridad en operativo nocturno, Blaine County. Caso activo.', badge: 'En curso', tipo: 'gray' },
+      ]
+    }
+  },
+  {
+    id: 2, alias: 'Nahuel', role: 'Vice President', pin: 'pin-red', foto: 'fotos/Nahuel.png',
+    ficha: {
+      nombre: 'Emilio', apellido: 'Schmidt', dni: '19.304.817',
+      nacimiento: '11-DIC-2002', lugar: 'Chile', clasificacion: 'ALTO RIESGO',
+      altura: '1.75 m', peso: '75 kg', ojos: 'Azules ', cabello: 'Castaño platinado',
+      historia: 'Criado en un entorno campesino marcado por carencias, aprendió desde temprano a sobrevivir sin depender de nadie. La separación de sus padres y su vida inestable lo volvieron desconfiado, evitando lazos y priorizando su propio beneficio. Desde joven desarrolló habilidades en mecánica, que pronto comenzó a usar en trabajos al margen de la ley. Entre pueblos y ciudades, se fue vinculando con redes delictuales, participando en robos, desarmes y negocios ilegales. Su perfil bajo, mente fría y capacidad para resolver problemas lo hicieron ganar respeto en ese ambiente. Con el tiempo dejó de ser solo un mecánico, convirtiéndose en alguien clave en operaciones más complejas. Su vida nómada lo endureció, enseñándole que la lealtad se gana y el poder se toma. Decide cambiarse el apellido para mantener el anonimato en una nueva ciudad. Al llegar a Allstars, ya no buscaba oportunidades: buscaba control y territorio. Se integra al MONGRELS MC como vicepresidente, aportando experiencia criminal, liderazgo y una visión clara dentro del mundo delictual. ',
+      antecedentes: [
+        { fecha: '07·MAR·2018', desc: 'Posesión de arma sin registro. Condena suspendida por acuerdo procesal.', badge: 'Armas', tipo: 'dark' },
+        { fecha: '12·ENE·2019', desc: 'Asociación ilícita con organización criminal. Liberada por falta de pruebas directas.', badge: 'Crimen Org.', tipo: 'dark' },
+        { fecha: '11·OCT·2022', desc: 'Disputa territorial con organización rival. Detenido, liberado sin cargos.', badge: 'Violencia', tipo: 'red' },
+      ]
+    }
+  },
+  {
+    id: 3, alias: 'Ecko', role: 'Sgt. at Arms', pin: 'pin-yellow', foto: 'fotos/Ecko.png',
+    ficha: {
+      nombre: 'John', apellido: 'Ortiz', dni: '84736291',
+      nacimiento: '13·OCT·1998', lugar: 'Sturgis', clasificacion: 'RIESGO MEDIO',
+      altura: '1.78 m', peso: '80 kg', ojos: 'Verdes', cabello: 'Castaño',
+      historia: 'John Ortiz, criado en un entorno rural, quedó huérfano a temprana edad, lo que lo obligó a madurar rápido y volverse autosuficiente. Durante su adolescencia encontró en la música una forma de sustento y escape, aprendiendo a leer a las personas y controlar ambientes. Con el tiempo se formó como mecánico, destacando por su orden y precisión. Ingresó al The Lost MC, donde adoptó el apodo "Ecko" y ascendió hasta Sargento de Armas por mérito propio. La mentira y la deslealtad marcaron su forma de ver el mundo, convirtiéndose en principios que no tolera. Tras la disolución del club, sostuvo una charla directa con la presidenta y el vicepresidente de Mongrels MC, quienes tras consultar con sus miembros aceptaron su ingreso. Actualmente es Sargento de Armas bajo el mando de la presidenta, a quien le debe lealtad absoluta y por quien daría la vida, incluso luchando hasta en el infierno. Fue ahí donde Ecko encontró el verdadero significado de la lealtad.',
+      antecedentes: [
+        { fecha: '14·SEP·2017', desc: 'Asociación con organización criminal The Lost MC. Participación en operaciones delictivas documentada.', badge: 'Crimen Org.', tipo: 'dark' },
+        { fecha: '22·MAR·2021', desc: 'Incidente violento con rival territorial. Sargento de Armas confirmado en The Lost MC.', badge: 'Violencia', tipo: 'red' },
+        { fecha: '08·JUN·2024', desc: 'Transferencia registrada a Mongrels MC. Integración como Sargento de Armas completada.', badge: 'MC Trans.', tipo: 'gray' },
+      ]
+    }
+  },
+  {
+    id: 4, alias: 'Aka', role: 'Sgt. at Arms', pin: 'pin-yellow', foto: 'fotos/Aka.png',
+    ficha: {
+      nombre: 'Long', apellido: 'Skywalker', dni: '21.572.325',
+      nacimiento: '13·OCT·1998', lugar: 'Texas', clasificacion: 'RIESGO MEDIO',
+      altura: '1.70 m', peso: '65 kg', ojos: 'Oscuros', cabello: 'Negro',
+      historia: 'Long Skywalker creció en un entorno duro desde muy pequeño, criado solo con su padre y hermanos entre peleas callejeras y supervivencia. Encontró en las motocicletas su escape, y en Mongrel\'s, una verdadera familia. Con el tiempo se ganó el respeto del club participando activamente en sus operaciones, demostrando lealtad y carácter. Hoy, ese camino lo llevó a convertirse en uno de los Sargentos de Armas.',
+      antecedentes: [
+        { fecha: '18·JUN·2021', desc: 'Alteración del orden público tras un pleito en la vía pública.', badge: 'Pleito', tipo: 'dark' },
+        { fecha: '29·ENE·2024', desc: 'Robo de mercancía en una licorería del sector. Investigación abierta.', badge: 'Robo', tipo: 'gray' },
+      ]
+    }
+  },
+  {
+    id: 5, alias: 'Pato', role: 'Road Captain', pin: 'pin-yellow', foto: 'fotos/Pato.png',
+    ficha: {
+      nombre: 'Patricio', apellido: 'Venegas', dni: '17.429.883',
+      nacimiento: '30·AGO·1992', lugar: 'Sandy Shores, S.A.', clasificacion: 'RIESGO MEDIO',
+      altura: '1.80 m', peso: '85 kg', ojos: 'Claros', cabello: 'Rubio',
+      historia: '"Pato" coordina todas las rutas y rides del club. Conoce cada camino de San Andreas como la palma de su mano. Sospechoso de organizar corredores clandestinos para transporte de mercancía ilegal hacia el interior del estado. Nunca ha sido sorprendido in fraganti.',
+      antecedentes: [
+        { fecha: '14·ABR·2017', desc: 'Conducción temeraria y evasión policial en autopista norte. Multa y suspensión.', badge: 'Tránsito', tipo: 'dark' },
+        { fecha: '22·NOV·2021', desc: 'Sospechoso en operativo de transporte ilegal. Sin cargos formalizados.', badge: 'Tráfico', tipo: 'gray' },
+      ]
+    }
+  },
+  {
+    id: 6, alias: 'Kayn', role: 'Treasurer', pin: 'pin-white', foto: 'fotos/Kayn.png',
+    ficha: {
+      nombre: 'Camilo', apellido: 'Skywalker', dni: '555879431',
+      nacimiento: '04·MAY·2006', lugar: 'San Andreas', clasificacion: 'ALTO RIESGO',
+      altura: '1.89 m', peso: '92 kg', ojos: 'Negros', cabello: 'Negro',
+      historia: 'Camilo Skywalker, hijo de una familia de motociclistas junto a sus dos hermanas y su padre. Desde pequeño destacó por su capacidad innata para las matemáticas, que usó frecuentemente para estafar a sus compañeros de escuela. A los 18 años subsistía mediante lavado de dinero en un mecánico y estafas telefónicas. Junto con un amigo intentó asaltar una joyería, fue detenido y condenado, pero gracias a su familia y contactos logró salir libre. Su mayor aspiración es proteger a todos sus amigos y familia, brindándoles ayuda en todo lo que esté a su alcance.',
+      antecedentes: [
+        { fecha: '12·SEP·2023', desc: 'Lavado de Activos. Operaciones de blanqueo detectadas en múltiples transacciones.', badge: 'Lavado', tipo: 'dark' },
+        { fecha: '14·NOV·2023', desc: 'Estafa reiterada mediante llamadas telefónicas. Múltiples víctimas identificadas.', badge: 'Estafa', tipo: 'red' },
+        { fecha: '22·FEB·2024', desc: 'Robo a Mano Armada en joyería. Detenido, liberado por conexiones.', badge: 'Robo', tipo: 'red' },
+        { fecha: '18·MAR·2024', desc: 'Extorsión a pequeños negocios. Investigación en curso.', badge: 'En curso', tipo: 'gray' },
+      ]
+    }
+  },
+  {
+    id: 7, alias: 'Iris', role: 'Secretary', pin: 'pin-white', foto: 'fotos/Iris.png',
+    ficha: {
+      nombre: 'Iris', apellido: 'Contreras', dni: '24.782.316',
+      nacimiento: '27·OCT·1998', lugar: 'Rockford Hills, S.A.', clasificacion: 'BAJO RIESGO',
+      altura: '1.68 m', peso: '60 kg', ojos: 'Verdes', cabello: 'Castaño',
+      historia: 'Iris Contreras gestiona la documentación, comunicaciones y agenda interna del club. Su discreción la convierte en activo invaluable para los Mongrels. Sin antecedentes mayores, se sospecha del manejo de canales de comunicación encriptados y archivos comprometedores de la organización.',
+      antecedentes: [
+        { fecha: '03·SEP·2023', desc: 'Interrogada como testigo en caso vinculado a Mongrels MC. No imputada.', badge: 'Testigo', tipo: 'gray' },
+      ]
+    }
+  },
+  {
+    id: 8, alias: 'K.', role: 'Loyal', pin: 'pin-blue', foto: 'fotos/K..png',
+    ficha: {
+      nombre: 'DESCONOCIDO', apellido: 'DESCONOCIDO', dni: '— SIN REGISTRO —',
+      nacimiento: '— — —', lugar: 'Desconocido', clasificacion: 'SIN CLASIFICAR',
+      altura: '—', peso: '—', ojos: '—', cabello: '—',
+      historia: 'Identidad sin confirmar. Solo conocido como "K." dentro del club. No existen registros previos en el sistema de la LSPD. Se investiga posible uso de identidad falsa o eliminación de antecedentes. Figura de extrema discreción dentro de la organización. Caso abierto.',
+      antecedentes: [
+        { fecha: '— · — · ——', desc: 'Sin antecedentes registrados en el sistema. Identidad bajo investigación activa.', badge: 'Sin datos', tipo: 'gray' },
+      ]
+    }
+  },
+  {
+    id: 9, alias: 'Fufe', role: 'Member', pin: 'pin-blue', foto: 'fotos/Fufe.png',
+    ficha: {
+      nombre: 'Felipe', apellido: 'Urra', dni: '22.193.047',
+      nacimiento: '19·JUN·1996', lugar: 'Los Santos, S.A.', clasificacion: 'RIESGO MEDIO',
+      altura: '1.76 m', peso: '78 kg', ojos: 'Marrones', cabello: 'Oscuro',
+      historia: '"Fufe" es miembro activo con parche completo. Participó en múltiples operaciones de protección y logística del club. Leal a la directiva sin cuestionamientos. Brazo ejecutor en disputas menores del MC contra organizaciones rivales.',
+      antecedentes: [
+        { fecha: '16·JUL·2020', desc: 'Detenido en control preventivo portando arma sin documentación válida.', badge: 'Armas', tipo: 'dark' },
+        { fecha: '04·DIC·2022', desc: 'Riña con integrantes de organización rival en bar del sector Hawick.', badge: 'Violencia', tipo: 'red' },
+      ]
+    }
+  },
+  {
+    id: 10, alias: 'Kai', role: 'Member', pin: 'pin-blue', foto: 'fotos/Kai.png',
+    ficha: {
+      nombre: 'Kai', apellido: 'Restrepo', dni: '27.854.199',
+      nacimiento: '05·MAR·2002', lugar: 'Vespucci, S.A.', clasificacion: 'BAJO RIESGO',
+      altura: '1.72 m', peso: '69 kg', ojos: 'Oscuros', cabello: 'Negro',
+      historia: 'El miembro más joven con parche completo. "Kai" probó su lealtad durante el período de prospect con eficiencia notable. Se sospecha de su participación en actividades de inteligencia e infiltración para el MC en otras organizaciones del submundo.',
+      antecedentes: [
+        { fecha: '11·MAR·2023', desc: 'Detenido por alteración del orden público en sector céntrico. Liberado sin cargos.', badge: 'Orden Público', tipo: 'gray' },
+      ]
+    }
+  },
+  {
+    id: 11, alias: 'Draco', role: 'Prospect', pin: 'pin-blue', foto: 'fotos/Draco.png',
+    ficha: {
+      nombre: 'Rodrigo', apellido: 'Espinoza', dni: '28.441.003',
+      nacimiento: '14·NOV·2003', lugar: 'Strawberry, S.A.', clasificacion: 'BAJO RIESGO',
+      altura: '1.81 m', peso: '82 kg', ojos: 'Oscuros', cabello: 'Negro',
+      historia: '"Draco" se encuentra en período de prospect, demostrando su valía ante el club. Historial previo limpio, lo que genera desconfianza entre algunos miembros veteranos. Actualmente bajo vigilancia constante del consejo interno.',
+      antecedentes: [
+        { fecha: '20·ABR·2024', desc: 'Primera detención: presente en escena de disputa vinculada al MC. Liberado.', badge: 'Testigo', tipo: 'gray' },
+      ]
+    }
+  },
+  {
+    id: 12, alias: 'Pulguita', role: 'Prospect', pin: 'pin-white', foto: 'fotos/Pulguita.png',
+    ficha: {
+      nombre: 'Paulina', apellido: 'García', dni: '29.012.774',
+      nacimiento: '02·FEB·2004', lugar: 'Chamberlain Hills, S.A.', clasificacion: 'BAJO RIESGO',
+      altura: '1.60 m', peso: '52 kg', ojos: 'Marrones', cabello: 'Castaño',
+      historia: '"Pulguita", la más reciente prospecto del club. Pequeña en estatura, enorme en determinación. Se ganó la atención del MC tras varios favores sin pedir nada a cambio. Actualmente en período de evaluación por parte del consejo.',
+      antecedentes: [
+        { fecha: '— · — · ——', desc: 'Sin antecedentes registrados en el sistema. Perfil de bajo riesgo en evaluación.', badge: 'Sin datos', tipo: 'gray' },
+      ]
+    }
+  },
 ]
 
+/* ═══════════════════════════════════════════════
+   IDEAS DE ROL DATA
+═══════════════════════════════════════════════ */
+const IDEAS = [
+  {
+    num: '01', nivel: 'SOCIAL', color: 'idea-social',
+    titulo: 'Ride & Cobra',
+    desc: 'El club organiza un ride por Los Santos exigiendo cuota de protección a locales en la ruta. Civiles, mecánicos, prensa y policías involucrados por igual.',
+  },
+  {
+    num: '02', nivel: 'CRIMINAL', color: 'idea-criminal',
+    titulo: 'Guerra de Territorio',
+    desc: 'Conflicto activo con otra organización por control de zona industrial. Negociación, ultimátums, y si falla, respuesta directa sobre el terreno.',
+  },
+  {
+    num: '03', nivel: 'INTERNO', color: 'idea-interno',
+    titulo: 'El Infiltrado',
+    desc: 'Un miembro sospecha que hay un informante en el club. Tensión interna, interrogatorios, traiciones. El consejo debe encontrar al topo antes que la LSPD actúe.',
+  },
+  {
+    num: '04', nivel: 'CRIMINAL', color: 'idea-criminal',
+    titulo: 'Ruta del Norte',
+    desc: 'Operativo de transporte de cargamento sensible por las rutas del condado. Pato lidera la logística. Un punto de control policial amenaza toda la operación.',
+  },
+  {
+    num: '05', nivel: 'SOCIAL', color: 'idea-social',
+    titulo: 'Initiation',
+    desc: 'Un nuevo aspirante debe completar pruebas definidas por el consejo para ganarse el parche. Cada miembro puede sumarse al proceso como evaluador o complicarle la vida.',
+  },
+  {
+    num: '06', nivel: 'POLÍTICO', color: 'idea-politico',
+    titulo: 'Cumbre de Clanes',
+    desc: 'Reunión entre MCs rivales para negociar tratado o declarar guerra abierta. La presidenta negocia. El Sgt. at Arms vigila. Un movimiento en falso lo cambia todo.',
+  },
+]
+
+/* ═══════════════════════════════════════════════
+   FICHA MODAL COMPONENT
+═══════════════════════════════════════════════ */
+function FichaModal({ member, onClose }: { member: Member; onClose: () => void }) {
+  const f = member.ficha
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden'
+    const handleKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
+    window.addEventListener('keydown', handleKey)
+    return () => {
+      document.body.style.overflow = ''
+      window.removeEventListener('keydown', handleKey)
+    }
+  }, [onClose])
+
+  return (
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-inner" onClick={e => e.stopPropagation()}>
+        <button className="modal-close-btn" onClick={onClose}>
+          <span>✕</span> CERRAR FICHA
+        </button>
+
+        <div className="modal-sheet">
+          <div className="wm-modal">LSPD</div>
+
+          {/* ── DOC HEADER ── */}
+          <div className="fdoc-header">
+            <div className="fdoc-badge">
+              <Image src="/fotos/citylossantos.png" alt="City of Los Santos" width={54} height={54} className="fdoc-logo fdoc-logo-city" />
+              <Image src="/fotos/lspd_logo.png" alt="LSPD" width={54} height={54} className="fdoc-logo fdoc-logo-lspd" />
+            </div>
+            <div className="fdoc-center">
+              <div className="fdoc-dept">Los Santos Police Department</div>
+              <div className="fdoc-sub">División de Crimen Organizado · San Andreas</div>
+              <div className="fdoc-type">Ficha Criminal — Registro Oficial</div>
+            </div>
+            <div className="fdoc-case">
+              <div className="fdoc-case-label">Caso N°</div>
+              <div className="fdoc-case-num">SA-2024-{String(member.id).padStart(4, '0')}</div>
+              <div className="fdoc-case-label" style={{ marginTop: 4 }}>Registro ID</div>
+              <div className="fdoc-case-num" style={{ fontSize: 11 }}>MCR-{String(member.id).padStart(2, '0')}</div>
+            </div>
+            <div className="fdoc-stripe" />
+          </div>
+
+          {/* ── DOC BODY ── */}
+          <div className="fdoc-body">
+
+            {/* LEFT */}
+            <div className="fdoc-left">
+              <div className="fdoc-photo">
+                {member.foto
+                  ? <img src={member.foto} alt={member.alias} />
+                  : (
+                    <div className="fdoc-photo-ph">
+                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#7a6a50" strokeWidth="1.5">
+                        <circle cx="12" cy="8" r="4" />
+                        <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+                      </svg>
+                      <span>Sin foto</span>
+                    </div>
+                  )
+                }
+                <div className="fdoc-photo-num">REG · SA-{String(member.id).padStart(4, '0')}-MCR</div>
+              </div>
+
+              <div className="fdoc-classif">
+                <div className="fdoc-cl-label">Clasificación</div>
+                <div className={`fdoc-cl-val ${f.clasificacion === 'ALTO RIESGO' ? 'cl-alto' : f.clasificacion === 'RIESGO MEDIO' ? 'cl-medio' : 'cl-bajo'}`}>
+                  {f.clasificacion}
+                </div>
+              </div>
+
+              <div className="fdoc-phys">
+                {[['Altura', f.altura], ['Peso', f.peso], ['Ojos', f.ojos], ['Cabello', f.cabello]].map(([lbl, val]) => (
+                  <div key={lbl} className="fdoc-phys-cell">
+                    <div className="fdoc-phys-lbl">{lbl}</div>
+                    <div className="fdoc-phys-val">{val}</div>
+                  </div>
+                ))}
+              </div>
+
+              <div>
+                <div className="fdoc-field-label">Huellas dactilares</div>
+                <div className="fdoc-fp-row">
+                  <div className="fdoc-fp"><div className="fdoc-fp-lbl">IZQ.</div></div>
+                  <div className="fdoc-fp"><div className="fdoc-fp-lbl">DER.</div></div>
+                </div>
+              </div>
+            </div>
+
+            {/* RIGHT */}
+            <div className="fdoc-right">
+              <div className="fdoc-2col">
+                <div className="fdoc-field-row">
+                  <div className="fdoc-field-label">Apellido</div>
+                  <div className="fdoc-field-val big">{f.apellido}</div>
+                </div>
+                <div className="fdoc-field-row">
+                  <div className="fdoc-field-label">Nombre</div>
+                  <div className="fdoc-field-val big">{f.nombre}</div>
+                </div>
+              </div>
+              <div className="fdoc-2col">
+                <div className="fdoc-field-row">
+                  <div className="fdoc-field-label">Alias / Apodo</div>
+                  <div className="fdoc-field-val">&ldquo;{member.alias}&rdquo;</div>
+                </div>
+                <div className="fdoc-field-row">
+                  <div className="fdoc-field-label">DNI</div>
+                  <div className="fdoc-field-val">{f.dni}</div>
+                </div>
+              </div>
+              <div className="fdoc-2col">
+                <div className="fdoc-field-row">
+                  <div className="fdoc-field-label">Fecha de nacimiento</div>
+                  <div className="fdoc-field-val">{f.nacimiento}</div>
+                </div>
+                <div className="fdoc-field-row">
+                  <div className="fdoc-field-label">Lugar de nacimiento</div>
+                  <div className="fdoc-field-val">{f.lugar}</div>
+                </div>
+              </div>
+              <div className="fdoc-2col">
+                <div className="fdoc-field-row">
+                  <div className="fdoc-field-label">Rango en el MC</div>
+                  <div className="fdoc-field-val">{member.role}</div>
+                </div>
+                <div className="fdoc-field-row">
+                  <div className="fdoc-field-label">Organización</div>
+                  <div className="fdoc-field-val">Mongrels MC</div>
+                </div>
+              </div>
+
+              <div className="fdoc-historia">
+                <div className="fdoc-field-label">Historia / Perfil del sujeto</div>
+                <div className="fdoc-historia-text">{f.historia}</div>
+              </div>
+
+              <div>
+                <div className="fdoc-field-label" style={{ marginBottom: 10 }}>Antecedentes criminales</div>
+                <div className="fdoc-antec-list">
+                  {f.antecedentes.map((a, i) => (
+                    <div key={i} className="fdoc-antec-item">
+                      <div className="fdoc-antec-date">{a.fecha}</div>
+                      <div className="fdoc-antec-desc">{a.desc}</div>
+                      <div className={`fdoc-antec-badge ab-${a.tipo}`}>{a.badge}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* ── DOC FOOTER ── */}
+          <div className="fdoc-footer">
+            <div className="fdoc-footer-stamp">
+              LSPD · División Crimen Organizado · San Andreas PD<br />
+              Documento oficial — No reproducir sin autorización
+            </div>
+            <div className="fdoc-footer-conf">Confidencial</div>
+            <div className="fdoc-footer-sig">
+              Emitido por:<br />
+              Det. R. Morales · Badge #4471<br />
+              División C.O. — LSPD
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/* ═══════════════════════════════════════════════
+   HOME
+═══════════════════════════════════════════════ */
 export default function Home() {
+  const [activeMember, setActiveMember] = useState<Member | null>(null)
+
   return (
     <>
+      {activeMember && <FichaModal member={activeMember} onClose={() => setActiveMember(null)} />}
+
       {/* ══ NAV ══ */}
       <nav className="mc-nav">
+        <div className="nav-accent-left" />
         <div className="nav-inner">
           <a href="#hero" className="nav-brand">
-            <Image src="/logo.png" alt="Mongrels MC" width={42} height={42} />
+            <div className="nav-one-pct">
+              <Image src="/fotos/1porcent.png" alt="1%" width={28} height={36} className="nav-one-pct-img" />
+            </div>
+            <Image src="/logo.png" alt="Mongrels MC" width={40} height={40} className="nav-logo-img" />
             <div className="nav-brand-text">
               <div className="nav-brand-name">Mongrels <span>MC</span></div>
               <div className="nav-brand-sub">Sede San Andreas · FiveM RP</div>
             </div>
           </a>
           <ul className="nav-links">
-            <li><a href="#historia">Historia</a></li>
-            <li><a href="#miembros">La Manada</a></li>
-            <li><a href="#postulacion">Postulación</a></li>
-            <li><a href="#galeria">Galería</a></li>
+            <li><a href="#historia"><Image src="/fotos/1porcent.png" alt="1%" width={22} height={28} className="nav-link-icon" />Historia</a></li>
+            <li><a href="#miembros"><Image src="/fotos/1porcent.png" alt="1%" width={22} height={28} className="nav-link-icon" />Miembros</a></li>
+            <li><a href="#porque"><Image src="/fotos/1porcent.png" alt="1%" width={22} height={28} className="nav-link-icon" />¿Por qué?</a></li>
+            <li><a href="#ideas"><Image src="/fotos/1porcent.png" alt="1%" width={22} height={28} className="nav-link-icon" />Ideas de Rol</a></li>
+            <li><a href="#postulacion"><Image src="/fotos/1porcent.png" alt="1%" width={22} height={28} className="nav-link-icon" />Postulación</a></li>
+            <li><a href="#galeria"><Image src="/fotos/1porcent.png" alt="1%" width={22} height={28} className="nav-link-icon" />Galería</a></li>
           </ul>
+          <div className="nav-tail">
+            <div className="nav-chain">
+              {[...Array(5)].map((_, i) => (
+                <Image key={i} src="/fotos/1porcent.png" alt="1%" width={12} height={16} className="nav-chain-icon" />
+              ))}
+            </div>
+          </div>
         </div>
+        <div className="nav-bottom-line" />
       </nav>
 
       {/* ══ HERO ══ */}
       <section id="hero" className="hero">
+        <div className="hero-photo" />
         <div className="hero-bg" />
+        <div className="hero-vignette" />
         <div className="hero-texture" />
-        <div className="hero-watermark">MC</div>
+        <div className="hero-watermark">MONGRELS</div>
         <div className="hero-content">
-          <Image src="/logo.png" alt="Mongrels MC" width={220} height={220} className="hero-logo" />
-          <div className="hero-kicker">San Andreas · FiveM Roleplay</div>
+          <div className="hero-pre">
+            <div className="hero-pre-line" />
+            <div className="hero-pre-text">San Andreas · FiveM Roleplay</div>
+            <div className="hero-pre-line" />
+          </div>
+          <Image src="/logo.png" alt="Mongrels MC" width={200} height={200} className="hero-logo" />
           <h1 className="hero-title">Mongrels <em>MC</em></h1>
           <div className="hero-tagline">&ldquo;Vive Rápido, Muere Joven&rdquo;</div>
           <div className="hero-rule">
             <div className="hero-rule-line" />
-            <div className="hero-rule-icon" />
+            <div className="hero-rule-diamond" />
             <div className="hero-rule-line" />
           </div>
           <div className="hero-chips">
-            <div className="hero-chip hl">Motorcycle Club</div>
+            <div className="hero-chip hl">1% Motorcycle Club</div>
             <div className="hero-chip">12 Miembros</div>
             <div className="hero-chip">Sede San Andreas</div>
           </div>
         </div>
-        <div className="hero-scroll">Scroll</div>
+        <div className="hero-bottom-bar">
+          <div className="hbb-item"><span className="hbb-num">12</span><span className="hbb-label">Miembros</span></div>
+          <div className="hbb-sep" />
+          <div className="hbb-item"><span className="hbb-num">2015</span><span className="hbb-label">Fundación</span></div>
+          <div className="hbb-sep" />
+          <div className="hbb-item"><span className="hbb-num">1%</span><span className="hbb-label">Outlaw MC</span></div>
+          <div className="hbb-sep" />
+          <div className="hbb-item"><span className="hbb-num">S.A.</span><span className="hbb-label">Territorio</span></div>
+        </div>
+        <div className="hero-scroll">Scroll <span /></div>
       </section>
 
       <div className="sdiv" />
@@ -72,22 +479,50 @@ export default function Home() {
           <div className="hist-blocks">
             <div className="hist-block">
               <div className="hist-text">
-                <h3>El nacimiento de la manada</h3>
-                <p>Mongrels MC no nació en una oficina ni en un club de lujo. Nació en el asfalto, entre humo y aceite, cuando un puñado de hermanos decidió que la libertad no se pedía — se tomaba. No éramos los más refinados. Éramos los mongrels: los que no encajan, los que no se doblegan, los que viven de acuerdo a sus propias reglas.</p>
-                <p>Desde el primer ride, el pacto fue claro: lealtad absoluta o nada. Un hermano que entra, entra para quedarse.</p>
+                <div className="hist-year-tag">2017</div>
+                <h3>Episodio 1 — El Nacimiento</h3>
+                <p>Todo empezó en un garaje del puerto de San Francisco. Henry Pine, veterano de Afganistán, reunió a seis personas y fundó Mongrel's MC: un club que no se arrodilla ante nadie. Los primeros ingresos vinieron de peleas clandestinas en los muelles y tráfico de chalecos antibalas robados de bases militares.</p>
+                <p>Alice Monterrey tenía contactos en la base naval de Alameda. Kyle Böhringer manejaba las finanzas. Nathan Naberrie era el peleador estrella. Sasha Scherbatsky, el ruso con pasado en la mafia, organizaba el circuito. Los Hell Angels les dejaron una nota clavada con un cuchillo: <em>"Los perros callejeros no duran mucho en territorio ajeno."</em> Henry la quemó sin pensarlo dos veces.</p>
               </div>
               <div className="hist-img-col hist-img-col-placeholder">
-                <div className="img-year">2015</div>
+                <div className="hist-img-overlay" />
+                <div className="img-year">2017</div>
               </div>
             </div>
             <div className="hist-block rev">
               <div className="hist-text">
-                <h3>Forjados en San Andreas</h3>
-                <p>Kilómetro a kilómetro, el escudo del perro encadenado fue ganando peso en las calles de San Andreas. Cada ruta, cada disputa, cada acuerdo sellado a mano — todo fue construyendo la reputación de una hermandad que no pide permiso.</p>
-                <p>Hoy somos 12. No muchos, pero los que están, están de verdad. Sin caretas, sin medias tintas. Mongrels o nada.</p>
+                <div className="hist-year-tag">2019</div>
+                <h3>Episodio 2 — Fracturas</h3>
+                <p>The Lost MC destruyó sus rings de pelea y robó su inventario. Las cuentas no cerraban. Sasha trajo una propuesta: un transporte de cocaína desde Tijuana, cincuenta mil de una vez. Kyle votó en contra. Nathan a favor.</p>
+                <p>Cuatro a tres: ganó el sí. Así entró el club al mundo del narcotráfico, bajo las órdenes de un cartel mexicano llamado "Patrón" que les ofreció doscientos mil mensuales a cambio de establecer una célula permanente en Los Santos. Las grietas internas ya comenzaban a formarse.</p>
               </div>
               <div className="hist-img-col hist-img-col-placeholder">
-                <div className="img-year">HOY</div>
+                <div className="hist-img-overlay" />
+                <div className="img-year">2019</div>
+              </div>
+            </div>
+            <div className="hist-block">
+              <div className="hist-text">
+                <div className="hist-year-tag">2021-2022</div>
+                <h3>Episodio 3 — El Precio del Poder</h3>
+                <p>Alice Monterrey llevaba semanas reuniéndose con agentes del DEA. Patrón lo descubrió y les dio 24 horas. Nathan apretó el gatillo antes de que Kyle pudiera reaccionar. El operativo federal fracasó porque ya los habían avisado, pero el daño interno fue brutal.</p>
+                <p>Sasha murió acribillado en una emboscada en el puerto, defendiendo el último punto de distribución. Kyle dejó una nota bajo la puerta de Nathan: <em>"Lo siento, hermano. El juego se puso demasiado peligroso."</em> Y desapareció. Nathan quedó solo, con dos miembros y una ciudad entera que quería verlo muerto.</p>
+              </div>
+              <div className="hist-img-col hist-img-col-placeholder">
+                <div className="hist-img-overlay" />
+                <div className="img-year">2021-22</div>
+              </div>
+            </div>
+            <div className="hist-block rev">
+              <div className="hist-text">
+                <div className="hist-year-tag">2027</div>
+                <h3>Episodio 4 — Renacimiento</h3>
+                <p>Cinco años después, Nathan tenía 28 años y un taller de mecánica que perdía dinero cada mes. Llegó Manuel Carrillo, representante de la Familia Carrillo Fuentes, con una propuesta diferente: recursos y contactos, pero con reglas claras — nada de drogas en las calles, nada de guerra innecesaria, nada que lastime civiles.</p>
+                <p>Nathan reclutó seis personas cuidadosamente, incluyendo a su propio hijo Camilo. Sin juramentos de sangre ni gritos de conquista. Solo seis parches sobre una mesa de trabajo y la determinación de construir algo que valiera la pena proteger. Mongrel's MC renació en Los Santos. La historia apenas comienza.</p>
+              </div>
+              <div className="hist-img-col hist-img-col-placeholder">
+                <div className="hist-img-overlay" />
+                <div className="img-year">2027</div>
               </div>
             </div>
           </div>
@@ -96,79 +531,194 @@ export default function Home() {
 
       <div className="sdiv" />
 
-      {/* ══ DETECTIVE BOARD ══ */}
-      <section id="miembros" className="sec">
+      {/* ══ MIEMBROS ACTIVOS ══ */}
+      <section id="miembros" className="sec sec-dark">
         <div className="container">
-          <div className="sec-eye">Registro criminal · Dpto. Policía San Andreas</div>
-          <h2 className="sec-title">La Manada</h2>
+          <div className="sec-eye">Registro criminal · LSPD División Crimen Organizado</div>
+          <h2 className="sec-title">Miembros Activos</h2>
           <div className="sec-rule" />
+          <p className="board-desc">Caso #SA-2024-0847 · En curso · {MEMBERS.length} sujetos identificados</p>
         </div>
-        <div className="container" style={{ maxWidth: 1300, marginTop: 48 }}>
+        <div className="board-container">
           <div className="board-scene">
             <div className="board-frame">
               <div className="cork-surface">
                 <div className="police-header">
                   <div className="pd-badge">Dpto. Policía · San Andreas PD · División Crimen Organizado</div>
-                  <div className="pd-case">Caso #SA-2024-0847 · MONGRELS MC · En curso</div>
+                  <div className="pd-case">Caso #SA-2024-0847 · MONGRELS MC · En curso · Clasificado</div>
                 </div>
                 <div className="conf-stamp">
                   <span>Confidencial</span>
                   <small>San Andreas PD</small>
                 </div>
-                <svg className="board-strings-svg" viewBox="0 0 1220 780" preserveAspectRatio="none">
-                  <g stroke="#8B1525" strokeWidth="1.4" opacity="0.6" fill="none">
-                    <line x1="96"  y1="130" x2="290" y2="125"/>
-                    <line x1="290" y1="125" x2="484" y2="132"/>
-                    <line x1="484" y1="132" x2="678" y2="128"/>
-                    <line x1="678" y1="128" x2="872" y2="130"/>
-                    <line x1="872" y1="130" x2="1066" y2="125"/>
-                    <line x1="96"  y1="390" x2="290" y2="385"/>
-                    <line x1="290" y1="385" x2="484" y2="392"/>
-                    <line x1="484" y1="392" x2="678" y2="388"/>
-                    <line x1="678" y1="388" x2="872" y2="390"/>
-                    <line x1="872" y1="390" x2="1066" y2="385"/>
-                    <line x1="96"  y1="130" x2="96"  y2="390"/>
-                    <line x1="1066" y1="125" x2="1066" y2="385"/>
-                    <line x1="290" y1="125" x2="484" y2="392"/>
-                    <line x1="678" y1="128" x2="484" y2="392"/>
-                    <line x1="872" y1="130" x2="678" y2="388"/>
-                    <line x1="1066" y1="125" x2="872" y2="390"/>
-                    <line x1="96"  y1="130" x2="290" y2="385"/>
-                    <line x1="290" y1="125" x2="96"  y2="390"/>
-                    <line x1="872" y1="390" x2="1060" y2="580"/>
+
+                {/* Strings SVG */}
+                <svg className="board-strings-svg" viewBox="0 0 1260 820" preserveAspectRatio="none">
+                  <g stroke="#8B1525" strokeWidth="1.2" opacity="0.55" fill="none">
+                    {/* row 1 horizontal */}
+                    <line x1="96" y1="140" x2="302" y2="135" />
+                    <line x1="302" y1="135" x2="508" y2="142" />
+                    <line x1="508" y1="142" x2="714" y2="138" />
+                    <line x1="714" y1="138" x2="920" y2="140" />
+                    <line x1="920" y1="140" x2="1126" y2="135" />
+                    {/* row 2 horizontal */}
+                    <line x1="96" y1="410" x2="302" y2="405" />
+                    <line x1="302" y1="405" x2="508" y2="412" />
+                    <line x1="508" y1="412" x2="714" y2="408" />
+                    <line x1="714" y1="408" x2="920" y2="410" />
+                    <line x1="920" y1="410" x2="1126" y2="405" />
+                    {/* verticals */}
+                    <line x1="96" y1="140" x2="96" y2="410" />
+                    <line x1="1126" y1="135" x2="1126" y2="405" />
+                    <line x1="508" y1="142" x2="508" y2="412" />
+                    {/* diagonals */}
+                    <line x1="302" y1="135" x2="508" y2="412" />
+                    <line x1="714" y1="138" x2="508" y2="412" />
+                    <line x1="920" y1="140" x2="714" y2="408" />
+                    <line x1="1126" y1="135" x2="920" y2="410" />
+                    <line x1="96" y1="140" x2="302" y2="405" />
+                    <line x1="302" y1="135" x2="96" y2="410" />
+                    {/* extra crossing */}
+                    <line x1="714" y1="138" x2="920" y2="410" />
+                    <line x1="302" y1="405" x2="96" y2="140" opacity="0.3" />
+                    <line x1="920" y1="410" x2="1126" y2="600" opacity="0.4" />
+                    <line x1="508" y1="412" x2="302" y2="600" opacity="0.3" />
                   </g>
                 </svg>
-                <div className="board-grid" style={{ marginTop: 60 }}>
+
+                {/* Board grid */}
+                <div className="board-grid">
                   {MEMBERS.map((m) => (
-                    <div key={m.id} className="bcard">
+                    <div
+                      key={m.id}
+                      className={`bcard bcard-${m.id}`}
+                      onClick={() => setActiveMember(m)}
+                      title={`Ver ficha de ${m.alias}`}
+                    >
                       <div className={`pushpin ${m.pin}`} />
                       <div className="photo-wrap">
-                        <div className={`photo-img ${!m.foto ? 'photo-img-placeholder' : ''}`}>
+                        <div className="photo-img">
                           <div className="ev-num">#{String(m.id).padStart(2, '0')}</div>
-                          {m.foto && <img src={m.foto} alt={m.alias} style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top'}} />}
+                          {m.foto && (
+                            <img
+                              src={m.foto}
+                              alt={m.alias}
+                              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }}
+                            />
+                          )}
                         </div>
                         <div className="photo-caption">
                           <div className="p-name">{m.alias}</div>
                           <div className="p-role">{m.role}</div>
                         </div>
                       </div>
+                      <div className="bcard-hover-label">Ver ficha →</div>
                     </div>
                   ))}
                 </div>
-                <div className="sticky sy" style={{ bottom: 20, left: 40, transform: 'rotate(-3.5deg)', zIndex: 9 }}>12 sujetos<br />identificados<br />activos en S.A.</div>
-                <div className="sticky sb" style={{ bottom: 120, left: 170, transform: 'rotate(2deg)', zIndex: 9 }}>Vínculos<br />con tráfico<br />¿confirmar?</div>
-                <div className="sticky sp" style={{ bottom: 90, left: 310, transform: 'rotate(-1.5deg)', zIndex: 9 }}>Clubhouse<br />sin ubicar</div>
-                <div className="sticky so" style={{ bottom: 108, left: 450, transform: 'rotate(3deg)', zIndex: 9 }}>Pres. = líder<br />operativo</div>
-                <div className="sticky sg" style={{ bottom: 96, left: 590, transform: 'rotate(-2deg)', zIndex: 9 }}>Activos<br />desde 2015</div>
-                <div className="doc-paper" style={{ bottom: 16, right: 300, transform: 'rotate(-2.5deg)' }}>
-                  <div className="doc-title">Informe #0847</div>
-                  Organización MC<br />San Andreas region<br />Estado: <strong>ACTIVO</strong><br />Miembros: 12<br />Riesgo: Alto<br />Seguimiento: Sí
+
+                {/* Stickies */}
+                <div className="sticky sy" style={{ bottom: 20, left: 30, transform: 'rotate(-3.5deg)' }}>
+                  {MEMBERS.length} sujetos<br />identificados<br />activos en S.A.
                 </div>
-                <div className="board-map" style={{ bottom: 16, right: 40 }}>
-                  <div className="pushpin pin-red" style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)' }} />
+                <div className="sticky sb" style={{ bottom: 130, left: 170, transform: 'rotate(2.2deg)' }}>
+                  Vínculos<br />con tráfico<br />¿confirmar?
+                </div>
+                <div className="sticky sp" style={{ bottom: 80, left: 320, transform: 'rotate(-1.5deg)' }}>
+                  Clubhouse<br />sin ubicar<br />→ seguimiento
+                </div>
+                <div className="sticky so" style={{ bottom: 110, left: 470, transform: 'rotate(3deg)' }}>
+                  Pres. = líder<br />operativo<br />Nyx / Morales
+                </div>
+                <div className="sticky sg" style={{ bottom: 90, left: 620, transform: 'rotate(-2deg)' }}>
+                  Activos<br />desde 2015<br />alta peligrosidad
+                </div>
+
+                {/* Doc paper */}
+                <div className="doc-paper" style={{ bottom: 16, right: 280, transform: 'rotate(-2.5deg)' }}>
+                  <div className="doc-title">Informe #0847</div>
+                  Organización MC<br />San Andreas región<br />Estado: <strong>ACTIVO</strong><br />Miembros: {MEMBERS.length}<br />Riesgo: Alto<br />Prioridad: MÁXIMA
+                </div>
+
+                {/* Map */}
+                <div className="board-map" style={{ bottom: 16, right: 36 }}>
+                  <img src="fotos/Sede.png" alt="Sede" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }} />
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <div className="sdiv" />
+
+      {/* ══ POR QUÉ NOSOTROS ══ */}
+      <section id="porque" className="sec sec-alt">
+        <div className="container">
+          <div className="sec-eye">Nuestra propuesta</div>
+          <h2 className="sec-title">¿Por qué<br />nosotros?</h2>
+          <div className="sec-rule" />
+          <p className="porque-intro">
+            No somos un grupo de amigos con motos. Somos una organización con estructura, protocolo y lore propio.
+            Esto es lo que nos diferencia.
+          </p>
+          <div className="porque-grid">
+            <div className="porque-card">
+              <div className="porque-num">01</div>
+              <div className="porque-icon">⛓</div>
+              <h3>Hermandad real</h3>
+              <p>Jerarquía definida, rangos con significado real, ceremonia de ingreso y código interno. Cada hermano que entra, entra de verdad.</p>
+            </div>
+            <div className="porque-card">
+              <div className="porque-num">02</div>
+              <div className="porque-icon">🔥</div>
+              <h3>Rol criminal auténtico</h3>
+              <p>Extorsión, tráfico, territorio, acuerdos y traiciones. Generamos drama real que activa el roleplay de policías, rivales y civiles.</p>
+            </div>
+            <div className="porque-card">
+              <div className="porque-num">03</div>
+              <div className="porque-icon">🏍</div>
+              <h3>Cultura MC completa</h3>
+              <p>Parches, rides organizados, clubhouse, ceremonias y jerga propia. La experiencia de un Motorcycle Club de verdad.</p>
+            </div>
+            <div className="porque-card">
+              <div className="porque-num">04</div>
+              <div className="porque-icon">🗺</div>
+              <h3>Impacto en el servidor</h3>
+              <p>Cada operación que hacemos activa el roleplay de múltiples facciones. Somos el motor que mueve el submundo de San Andreas.</p>
+            </div>
+          </div>
+          <div className="porque-bottom">
+            <div className="porque-bottom-line" />
+            <div className="porque-quote">&ldquo;No pedimos permiso. No pedimos disculpas.&rdquo;</div>
+            <div className="porque-bottom-line" />
+          </div>
+        </div>
+      </section>
+
+      <div className="sdiv" />
+
+      {/* ══ IDEAS DE ROL ══ */}
+      <section id="ideas" className="sec">
+        <div className="container">
+          <div className="sec-eye">Propuestas de actividad · FiveM RP</div>
+          <h2 className="sec-title">Ideas de Rol</h2>
+          <div className="sec-rule" />
+          <p className="ideas-intro">
+            Escenarios concretos que el club puede generar en el servidor — involucrando civiles, fuerzas del orden, organizaciones rivales y aliados.
+          </p>
+          <div className="ideas-grid">
+            {IDEAS.map((idea) => (
+              <div key={idea.num} className={`idea-card ${idea.color}`}>
+                <div className="idea-header">
+                  <div className="idea-num">{idea.num}</div>
+                  <div className="idea-nivel">{idea.nivel}</div>
+                </div>
+                <h3 className="idea-titulo">{idea.titulo}</h3>
+                <p className="idea-desc">{idea.desc}</p>
+                <div className="idea-footer-line" />
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -218,13 +768,13 @@ export default function Home() {
               <div className="pcard-title">Estructura interna</div>
               <div className="hier-table">
                 {([
-                  ['President',            'Máxima autoridad. Decisiones estratégicas y representación.'],
-                  ['Vice President',       'Soporte al President. Mando en su ausencia.'],
-                  ['Sgt. at Arms',         'Seguridad y disciplina. Brazo ejecutor del club.'],
-                  ['Road Captain',         'Logística de rutas y rides.'],
-                  ['Treasurer / Secretary','Finanzas y registros del club.'],
-                  ['Members',              'Hermanos plenos con parche completo.'],
-                  ['Prospect',             'En período de prueba. Sin voto ni parche.'],
+                  ['President', 'Máxima autoridad. Decisiones estratégicas y representación.'],
+                  ['Vice President', 'Soporte al President. Mando en su ausencia.'],
+                  ['Sgt. at Arms', 'Seguridad y disciplina. Brazo ejecutor del club.'],
+                  ['Road Captain', 'Logística de rutas y rides.'],
+                  ['Treasurer / Secretary', 'Finanzas y registros del club.'],
+                  ['Members', 'Hermanos plenos con parche completo.'],
+                  ['Prospect', 'En período de prueba. Sin voto ni parche.'],
                 ] as [string, string][]).map(([rank, desc]) => (
                   <div key={rank} className="hier-row">
                     <div className="hier-rank">{rank}</div>
@@ -272,26 +822,58 @@ export default function Home() {
 
       {/* ══ FOOTER ══ */}
       <footer className="mc-footer">
+        <div className="footer-top-rule" />
         <div className="container">
-          <div className="footer-inner">
-            <div className="footer-brand">
-              <Image src="/logo.png" alt="Mongrels MC" width={54} height={54} style={{ opacity: 0.6 }} />
+          <div className="footer-main">
+            <div className="footer-brand-col">
+              <Image src="/logo.png" alt="Mongrels MC" width={64} height={64} className="footer-logo" />
               <div>
-                <div className="footer-brand-name">Mongrels MC</div>
+                <div className="footer-brand-name">Mongrels <span>MC</span></div>
                 <div className="footer-brand-sub">Sede San Andreas · FiveM RP</div>
               </div>
             </div>
-            <div className="footer-copy">&ldquo;Vive Rápido, Muere Joven&rdquo; &nbsp;·&nbsp; © 2026 Mongrels MC</div>
-            <div className="footer-socials">
-              <a href="#" className="fsoc" aria-label="Instagram">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-              </a>
-              <a href="#" className="fsoc" aria-label="Discord">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
-              </a>
-              <a href="#" className="fsoc" aria-label="WhatsApp">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.189 1.618 6.006L0 24l6.156-1.594A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.93a9.936 9.936 0 0 1-5.058-1.382l-.363-.215-3.757.983.999-3.666-.237-.376A9.96 9.96 0 0 1 2.07 12C2.07 6.48 6.48 2.07 12 2.07S21.93 6.48 21.93 12 17.52 21.93 12 21.93z"/></svg>
-              </a>
+            <div className="footer-nav-col">
+              <div className="footer-nav-title">Navegación</div>
+              <a href="#historia">Historia</a>
+              <a href="#miembros">Miembros Activos</a>
+              <a href="#porque">¿Por qué nosotros?</a>
+              <a href="#ideas">Ideas de Rol</a>
+              <a href="#postulacion">Postulación</a>
+              <a href="#galeria">Galería</a>
+            </div>
+            <div className="footer-patch-col">
+              <svg viewBox="0 0 60 76" width="48" height="60" className="footer-one-pct">
+                <polygon points="30,2 58,18 58,58 30,74 2,58 2,18" fill="none" stroke="#6B0F1A" strokeWidth="3" />
+                <polygon points="30,6 54,20 54,56 30,70 6,56 6,20" fill="none" stroke="#6B0F1A" strokeWidth="1" opacity="0.4" />
+                <text x="30" y="40" textAnchor="middle" fontSize="14" fontFamily="Oswald,sans-serif" fontWeight="700" fill="#6B0F1A" letterSpacing="0">1%</text>
+                <text x="30" y="56" textAnchor="middle" fontSize="11" fontFamily="Oswald,sans-serif" fontWeight="700" fill="#6B0F1A" letterSpacing="3">ER</text>
+              </svg>
+              <div className="footer-socials">
+                <a href="#" className="fsoc" aria-label="Instagram">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <rect x="2" y="2" width="20" height="20" rx="5" />
+                    <circle cx="12" cy="12" r="5" />
+                    <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+                  </svg>
+                </a>
+                <a href="#" className="fsoc" aria-label="Discord">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z" />
+                  </svg>
+                </a>
+                <a href="#" className="fsoc" aria-label="WhatsApp">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z" />
+                    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.189 1.618 6.006L0 24l6.156-1.594A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.93a9.936 9.936 0 0 1-5.058-1.382l-.363-.215-3.757.983.999-3.666-.237-.376A9.96 9.96 0 0 1 2.07 12C2.07 6.48 6.48 2.07 12 2.07S21.93 6.48 21.93 12 17.52 21.93 12 21.93z" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="footer-bottom">
+            <div className="footer-rule-line" />
+            <div className="footer-copy">
+              &ldquo;Vive Rápido, Muere Joven&rdquo; &nbsp;·&nbsp; © 2026 Mongrels MC &nbsp;·&nbsp; San Andreas · FiveM RP
             </div>
           </div>
         </div>
