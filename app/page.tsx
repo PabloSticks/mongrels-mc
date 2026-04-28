@@ -82,7 +82,7 @@ Y desde cero, en una nueva ciudad, comenzarán a levantar Mongrel’s otra vez c
     }
   },
   {
-    id: 5, alias: 'Patoka', role: 'Road Captain', pin: 'pin-yellow', foto: 'fotos/Pato.png',
+    id: 5, alias: 'Patoka', role: 'Road Captain', pin: 'pin-yellow', foto: 'fotos/pato.png',
     ficha: {
       nombre: 'Karlos', apellido: 'Garrido', dni: '3125641',
       nacimiento: '24·ENE·2000', lugar: 'San Andreas', clasificacion: 'RIESGO MEDIO',
@@ -121,7 +121,7 @@ Así, Karlos pasó de ser un novato a una pieza clave en la estructura operativa
     }
   },
   {
-    id: 7, alias: 'Iris', role: 'Secretary', pin: 'pin-white', foto: 'fotos/Iris.png',
+    id: 7, alias: 'Iris', role: 'Secretary', pin: 'pin-white', foto: 'fotos/iris.png',
     ficha: {
       nombre: 'Valeska', apellido: 'Skywalker', dni: '593817264',
       nacimiento: '26·DIC·2001', lugar: 'Texas', clasificacion: 'BAJO RIESGO',
@@ -143,7 +143,7 @@ Se ganó su lugar gracias a su inteligencia, discreción y habilidad para la obt
     }
   },
   {
-    id: 8, alias: 'K.', role: 'Loyal', pin: 'pin-blue', foto: 'fotos/K..png',
+    id: 8, alias: 'K.', role: 'Loyal', pin: 'pin-blue', foto: 'fotos/k..png',
     ficha: {
       nombre: 'DESCONOCIDO', apellido: 'DESCONOCIDO', dni: '— SIN REGISTRO —',
       nacimiento: '— — —', lugar: 'Desconocido', clasificacion: 'SIN CLASIFICAR',
@@ -180,7 +180,7 @@ Se ganó su lugar gracias a su inteligencia, discreción y habilidad para la obt
     }
   },
   {
-    id: 11, alias: 'Draco', role: 'Prospect', pin: 'pin-blue', foto: 'fotos/Draco.png',
+    id: 11, alias: 'Draco', role: 'Prospect', pin: 'pin-blue', foto: 'fotos/draco.png',
     ficha: {
       nombre: 'Rodrigo', apellido: 'Espinoza', dni: '28.441.003',
       nacimiento: '14·NOV·2003', lugar: 'Strawberry, S.A.', clasificacion: 'BAJO RIESGO',
