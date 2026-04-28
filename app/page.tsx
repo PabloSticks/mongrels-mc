@@ -21,14 +21,22 @@ const MEMBERS: Member[] = [
   {
     id: 1, alias: 'Nyx', role: 'President', pin: 'pin-red', foto: 'fotos/Nyx.png',
     ficha: {
-      nombre: 'Valentina', apellido: 'Morales', dni: '21.847.392',
-      nacimiento: '08·MAY·1996', lugar: 'Los Santos, S.A.', clasificacion: 'ALTO RIESGO',
-      altura: '1.71 m', peso: '62 kg', ojos: 'Negros', cabello: 'Negro',
-      historia: 'Valentina Morales, alias "Nyx", lidera los Mongrels MC con mano de hierro desde su fundación en 2015. Surgida del submundo sur de Los Santos, consolidó la organización con inteligencia estratégica y lealtad fanática de sus hermanos. Su red de contactos abarca operaciones de tráfico, extorsión y acuerdos clandestinos en todo San Andreas. Temida y respetada a partes iguales. La LSPD la considera objetivo prioritario de la División de Crimen Organizado.',
+      nombre: 'Amelia', apellido: 'Martinez', dni: '19.304.817',
+      nacimiento: '24·JUL·2002', lugar: 'DALLAS', clasificacion: 'ALTO RIESGO',
+      altura: '1.65 m', peso: '60 kg', ojos: 'Verdes', cabello: 'Castaño rojizo',
+      historia: `Amelia llegó a la ciudad sin rumbo claro, pero en Mongrel’s MC encontró algo que no sabía que le faltaba: una familia real.
+Dentro del club dejó de fingir, creciendo hasta convertirse en Tesorera, donde aprendió a manejar dinero, riesgos y silencios peligrosos.
+Con el tiempo asumió el liderazgo como Presidenta, cargando decisiones difíciles y la pérdida de compañeros que marcaron al MC.
+Mongrel’s dejó de ser un grupo y se transformó en su hogar, su identidad y su motivo para seguir adelante.
+Cada golpe fortaleció su carácter y su forma de liderar, volviéndola más estratégica y firme.
+Pero los negocios comenzaron a caer, y la ciudad dejó de ser segura para ellos.
+El MC tomó una decisión clave: irse para sobrevivir.
+Amelia, para proteger a los suyos, dejó atrás su nombre y todo lo que la vinculaba al pasado.
+Aun así, no partió sola… partió con su MC, con su familia, con quienes habían resistido todo junto a ella.
+Y desde cero, en una nueva ciudad, comenzarán a levantar Mongrel’s otra vez como un legado que nadie volvería a derribar`,
       antecedentes: [
-        { fecha: '12·ENE·2019', desc: 'Asociación ilícita con organización criminal. Liberada por falta de pruebas directas.', badge: 'Crimen Org.', tipo: 'dark' },
-        { fecha: '30·ABR·2021', desc: 'Extorsión a negocios en zona sur de Los Santos. Caso cerrado sin condena formal.', badge: 'Extorsión', tipo: 'red' },
-        { fecha: '14·AGO·2023', desc: 'Resistencia a la autoridad en operativo nocturno, Blaine County. Caso activo.', badge: 'En curso', tipo: 'gray' },
+        { fecha: '07·MAR·2022', desc: 'Tenencia ilegal de armas asociada a propiedades y espacios donde se han encontrado armas sin registro. No se acredita posesión directa.', badge: 'Armas', tipo: 'dark' },
+        { fecha: '11·OCT·2024', desc: 'Disputa territorial con organización rival. Detenida, liberada sin cargos.', badge: 'Violencia', tipo: 'red' },
       ]
     }
   },
@@ -165,12 +173,17 @@ const MEMBERS: Member[] = [
   {
     id: 12, alias: 'Pulguita', role: 'Prospect', pin: 'pin-white', foto: 'fotos/Pulguita.png',
     ficha: {
-      nombre: 'Paulina', apellido: 'García', dni: '29.012.774',
-      nacimiento: '02·FEB·2004', lugar: 'Chamberlain Hills, S.A.', clasificacion: 'BAJO RIESGO',
-      altura: '1.60 m', peso: '52 kg', ojos: 'Marrones', cabello: 'Castaño',
-      historia: '"Pulguita", la más reciente prospecto del club. Pequeña en estatura, enorme en determinación. Se ganó la atención del MC tras varios favores sin pedir nada a cambio. Actualmente en período de evaluación por parte del consejo.',
+      nombre: 'Samantha', apellido: 'Schmidt', dni: '21.428.793-6',
+      nacimiento: '09·MAR·2003', lugar: 'La Poblacion el Castillo', clasificacion: 'BAJO RIESGO',
+      altura: '1.50 m', peso: '52 kg', ojos: 'Marrones', cabello: 'Castaño',
+      historia: `En la población el castillo Samantha creció entre carencias, libros prestados y calles que enseñan rápido. Desde niña entendió que nadie vendría a salvarla, por lo que aprendió a valerse sola y dejó el colegio temprano para trabajar donde pudiera.
+Con el tiempo comenzó a ser conocida como "Pulguita", la más reciente prospecto del club, pequeña en estatura pero enorme en determinación.
+Tras ser adoptada formalmente por Nahuel, tomó el apellido Schmidt como símbolo de respeto y lealtad.
+Se ganó la atención del MC tras varios favores sin pedir nada a cambio y hoy continúa en evaluación por parte del consejo.
+Con 23 años, llega a la ciudad con un plan claro: hacerse un nombre sin hacer ruido, pero dejando huella donde pase.`,
       antecedentes: [
-        { fecha: '— · — · ——', desc: 'Sin antecedentes registrados en el sistema. Perfil de bajo riesgo en evaluación.', badge: 'Sin datos', tipo: 'gray' },
+        { fecha: '01·MAY·2024', desc: 'Detención por desórdenes en la vía pública tras riña callejera. Causa menor, sin condena vigente.', badge: 'Desórdenes', tipo: 'gray' },
+        { fecha: '19·JUL·2024', desc: 'Constatación policial por participación en pelea fuera de local nocturno, sin cargos posteriores.', badge: 'Pelea', tipo: 'gray' },
       ]
     }
   },
