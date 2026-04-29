@@ -1,6 +1,6 @@
 'use client'
 import Image from 'next/image'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback, memo } from 'react'
 
 /* ═══════════════════════════════════════════════
    TYPES
@@ -24,16 +24,16 @@ const MEMBERS: Member[] = [
       nombre: 'Amelia', apellido: 'Martinez', dni: '19.304.817',
       nacimiento: '24·JUL·2002', lugar: 'DALLAS', clasificacion: 'ALTO RIESGO',
       altura: '1.65 m', peso: '60 kg', ojos: 'Verdes', cabello: 'Castaño rojizo',
-      historia: `Amelia llegó a la ciudad sin rumbo claro, pero en Mongrel’s MC encontró algo que no sabía que le faltaba: una familia real.
+      historia: `Amelia llegó a la ciudad sin rumbo claro, pero en Mongrel's MC encontró algo que no sabía que le faltaba: una familia real.
 Dentro del club dejó de fingir, creciendo hasta convertirse en Tesorera, donde aprendió a manejar dinero, riesgos y silencios peligrosos.
 Con el tiempo asumió el liderazgo como Presidenta, cargando decisiones difíciles y la pérdida de compañeros que marcaron al MC.
-Mongrel’s dejó de ser un grupo y se transformó en su hogar, su identidad y su motivo para seguir adelante.
+Mongrel's dejó de ser un grupo y se transformó en su hogar, su identidad y su motivo para seguir adelante.
 Cada golpe fortaleció su carácter y su forma de liderar, volviéndola más estratégica y firme.
 Pero los negocios comenzaron a caer, y la ciudad dejó de ser segura para ellos.
 El MC tomó una decisión clave: irse para sobrevivir.
 Amelia, para proteger a los suyos, dejó atrás su nombre y todo lo que la vinculaba al pasado.
 Aun así, no partió sola… partió con su MC, con su familia, con quienes habían resistido todo junto a ella.
-Y desde cero, en una nueva ciudad, comenzarán a levantar Mongrel’s otra vez como un legado que nadie volvería a derribar`,
+Y desde cero, en una nueva ciudad, comenzarán a levantar Mongrel's otra vez como un legado que nadie volvería a derribar`,
       antecedentes: [
         { fecha: '07·MAR·2022', desc: 'Tenencia ilegal de armas asociada a propiedades y espacios donde se han encontrado armas sin registro. No se acredita posesión directa.', badge: 'Armas', tipo: 'dark' },
         { fecha: '11·OCT·2024', desc: 'Disputa territorial con organización rival. Detenida, liberada sin cargos.', badge: 'Violencia', tipo: 'red' },
@@ -60,7 +60,7 @@ Y desde cero, en una nueva ciudad, comenzarán a levantar Mongrel’s otra vez c
       nombre: 'Jack', apellido: 'Ortiz', dni: '93847512',
       nacimiento: '13·OCT·1998', lugar: 'Sturgis', clasificacion: 'RIESGO MEDIO',
       altura: '1.77 m', peso: '78 kg', ojos: 'Café', cabello: 'Castaño',
-      historia: 'Jack Ortiz, nacido el 13 de octubre de 1998, creció bajo la crianza firme de su madre en un entorno donde el respeto y el control eran fundamentales. Desde niño fue observador y tranquilo, aprendiendo a no confiar fácilmente y a actuar solo cuando era necesario. Durante su adolescencia comenzó a pasar más tiempo en la calle, donde formó su carácter. A los 17 años dio sus primeros pasos en el mundo delictual, participando en robos menores y trabajos discretos, destacando por su calma y precisión al actuar. Con el tiempo se involucró en encargos más organizados, desarrollando habilidades en mecánica y resolución de problemas. Su forma directa y eficiente de actuar le dio el apodo “Ecko”. Hoy busca consolidar su lugar dentro de Mongrel’s MC, ganarse el respeto desde abajo y construir su propio nombre sin depender de nadie.',
+      historia: 'Jack Ortiz, nacido el 13 de octubre de 1998, creció bajo la crianza firme de su madre en un entorno donde el respeto y el control eran fundamentales. Desde niño fue observador y tranquilo, aprendiendo a no confiar fácilmente y a actuar solo cuando era necesario. Durante su adolescencia comenzó a pasar más tiempo en la calle, donde formó su carácter. A los 17 años dio sus primeros pasos en el mundo delictual, participando en robos menores y trabajos discretos, destacando por su calma y precisión al actuar. Con el tiempo se involucró en encargos más organizados, desarrollando habilidades en mecánica y resolución de problemas. Su forma directa y eficiente de actuar le dio el apodo "Ecko". Hoy busca consolidar su lugar dentro de Mongrel\'s MC, ganarse el respeto desde abajo y construir su propio nombre sin depender de nadie.',
       antecedentes: [
         { fecha: '12·MAY·2017', desc: 'Robo menor y participación en trabajos discretos vinculados al entorno callejero.', badge: 'Robo', tipo: 'dark' },
         { fecha: '03·NOV·2019', desc: 'Incursión en encargos organizados y actividades ilícitas asociadas a vehículos y mecánica.', badge: 'Mecánica', tipo: 'gray' },
@@ -87,7 +87,7 @@ Y desde cero, en una nueva ciudad, comenzarán a levantar Mongrel’s otra vez c
       nacimiento: '24·ENE·2000', lugar: 'San Andreas', clasificacion: 'RIESGO MEDIO',
       altura: '1.75 m', peso: '80 kg', ojos: 'Café', cabello: 'Blanco',
       historia: `Karlos Garrido llegó al Moto Club tras una vida marcada por la mecánica y la supervivencia en la carretera.
-Con 20 años, trabajando en el taller Mongrel’s, logró ganarse la confianza del grupo.
+Con 20 años, trabajando en el taller Mongrel's, logró ganarse la confianza del grupo.
 Ingresó como prospect, iniciando desde abajo y demostrando lealtad mediante diversas tareas.
 Durante esta etapa participó en actividades ilícitas como robos y tráfico, consolidando su posición.
 Su disciplina y experiencia en rutas lo hicieron destacar rápidamente dentro del club.
@@ -256,20 +256,36 @@ const HISTORY_IMAGES = [
 ]
 
 const GALLERY_IMAGES = [
-  '/foticos/galeria1.png',
   '/foticos/galeria2.png',
   '/foticos/galeria3.png',
   '/foticos/galeria4.png',
   '/foticos/galeria5.png',
   '/foticos/galeria6.png',
-  '/foticos/galeria7.png',
   '/foticos/galeria8.png',
+  '/foticos/galeria9.png',
+  '/foticos/galeria10.png',
+  '/foticos/galeria11.png',
+
+
 ]
 
 /* ═══════════════════════════════════════════════
-   FICHA MODAL COMPONENT
+   NAV LINKS (shared between desktop + mobile)
 ═══════════════════════════════════════════════ */
-function FichaModal({ member, onClose }: { member: Member; onClose: () => void }) {
+const NAV_LINKS = [
+  { href: '#historia',    label: 'Historia' },
+  { href: '#miembros',   label: 'Miembros' },
+  { href: '#porque',     label: '¿Por qué?' },
+  { href: '#ideas',      label: 'Ideas de Rol' },
+  { href: '#postulacion',label: 'Postulación' },
+  { href: '#galeria',    label: 'Galería' },
+]
+
+/* ═══════════════════════════════════════════════
+   FICHA MODAL COMPONENT — memoizado para evitar
+   re-renders cuando el padre cambia estado
+═══════════════════════════════════════════════ */
+const FichaModal = memo(function FichaModal({ member, onClose }: { member: Member; onClose: () => void }) {
   const f = member.ficha
 
   useEffect(() => {
@@ -319,7 +335,15 @@ function FichaModal({ member, onClose }: { member: Member; onClose: () => void }
             <div className="fdoc-left">
               <div className="fdoc-photo">
                 {member.foto
-                  ? <img src={member.foto} alt={member.alias} />
+                  ? <img
+                      src={member.foto}
+                      alt={member.alias}
+                      loading="eager"
+                      decoding="async"
+                      width={220}
+                      height={293}
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }}
+                    />
                   : (
                     <div className="fdoc-photo-ph">
                       <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#7a6a50" strokeWidth="1.5">
@@ -438,38 +462,61 @@ function FichaModal({ member, onClose }: { member: Member; onClose: () => void }
       </div>
     </div>
   )
-}
+})  // ← fin React.memo
 
 /* ═══════════════════════════════════════════════
    HOME
 ═══════════════════════════════════════════════ */
 export default function Home() {
   const [activeMember, setActiveMember] = useState<Member | null>(null)
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
 
-  useEffect(() => {
-    document.body.style.overflow = mobileMenuOpen ? 'hidden' : ''
-    return () => {
-      document.body.style.overflow = ''
+  /* callbacks estables — no se recrean en cada render */
+  const closeMember = useCallback(() => setActiveMember(null), [])
+  const closeMenu   = useCallback(() => setMenuOpen(false),    [])
+
+  /* Preload de foto al hacer hover sobre la card —
+     el browser descarga la imagen ANTES de que el usuario haga click */
+  const preloadPhoto = useCallback((foto: string) => {
+    if (!foto) return
+    const link = document.createElement('link')
+    link.rel  = 'prefetch'
+    link.href = foto
+    link.as   = 'image'
+    // evitar duplicados
+    if (!document.head.querySelector(`link[href="${foto}"]`)) {
+      document.head.appendChild(link)
     }
-  }, [mobileMenuOpen])
+  }, [])
+
+  /* lock scroll when mobile menu is open */
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [menuOpen])
 
   return (
     <>
-      {activeMember && <FichaModal member={activeMember} onClose={() => setActiveMember(null)} />}
-      {mobileMenuOpen && (
-        <div className="mobile-nav-overlay" onClick={() => setMobileMenuOpen(false)}>
-          <div className="mobile-nav-panel" onClick={e => e.stopPropagation()}>
-            <button className="mobile-nav-close" onClick={() => setMobileMenuOpen(false)} type="button">
-              Cerrar
-            </button>
-            <a href="#historia" onClick={() => setMobileMenuOpen(false)}>Historia</a>
-            <a href="#miembros" onClick={() => setMobileMenuOpen(false)}>Miembros</a>
-            <a href="#porque" onClick={() => setMobileMenuOpen(false)}>¿Por qué?</a>
-            <a href="#ideas" onClick={() => setMobileMenuOpen(false)}>Ideas de Rol</a>
-            <a href="#postulacion" onClick={() => setMobileMenuOpen(false)}>Postulación</a>
-            <a href="#galeria" onClick={() => setMobileMenuOpen(false)}>Galería</a>
+      {activeMember && <FichaModal member={activeMember} onClose={closeMember} />}
+
+      {/* ══ MOBILE NAV OVERLAY ══ */}
+      {menuOpen && (
+        <div className="mobile-nav-overlay" onClick={closeMenu}>
+          <button className="mobile-nav-close" onClick={closeMenu} aria-label="Cerrar menú">✕</button>
+          <div className="mobile-nav-logo">
+            <Image src="/logo.png" alt="Mongrels MC" width={64} height={64} />
+            <span>Mongrels <em>MC</em></span>
           </div>
+          <ul onClick={e => e.stopPropagation()}>
+            {NAV_LINKS.map(link => (
+              <li key={link.href}>
+                <a href={link.href} onClick={closeMenu}>
+                  <Image src="/fotos/1porcent.png" alt="" width={16} height={20} />
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       )}
 
@@ -478,34 +525,34 @@ export default function Home() {
         <div className="nav-accent-left" />
         <div className="nav-inner">
           <a href="#hero" className="nav-brand">
-            <div className="nav-one-pct">
-              <Image src="/fotos/1porcent.png" alt="1%" width={28} height={36} className="nav-one-pct-img" />
-            </div>
             <Image src="/logo.png" alt="Mongrels MC" width={40} height={40} className="nav-logo-img" />
             <div className="nav-brand-text">
               <div className="nav-brand-name">Mongrels <span>MC</span></div>
               <div className="nav-brand-sub">Sede San Andreas · FiveM RP</div>
             </div>
           </a>
-          <button
-            type="button"
-            className="nav-hamburger"
-            aria-label="Abrir menú"
-            aria-expanded={mobileMenuOpen}
-            onClick={() => setMobileMenuOpen((value) => !value)}
-          >
-            <span />
-            <span />
-            <span />
-          </button>
+
+          {/* Desktop links */}
           <ul className="nav-links">
-            <li><a href="#historia"><Image src="/fotos/1porcent.png" alt="1%" width={22} height={28} className="nav-link-icon" />Historia</a></li>
-            <li><a href="#miembros"><Image src="/fotos/1porcent.png" alt="1%" width={22} height={28} className="nav-link-icon" />Miembros</a></li>
-            <li><a href="#porque"><Image src="/fotos/1porcent.png" alt="1%" width={22} height={28} className="nav-link-icon" />¿Por qué?</a></li>
-            <li><a href="#ideas"><Image src="/fotos/1porcent.png" alt="1%" width={22} height={28} className="nav-link-icon" />Ideas de Rol</a></li>
-            <li><a href="#postulacion"><Image src="/fotos/1porcent.png" alt="1%" width={22} height={28} className="nav-link-icon" />Postulación</a></li>
-            <li><a href="#galeria"><Image src="/fotos/1porcent.png" alt="1%" width={22} height={28} className="nav-link-icon" />Galería</a></li>
+            {NAV_LINKS.map(link => (
+              <li key={link.href}>
+                <a href={link.href}>
+                  <Image src="/fotos/1porcent.png" alt="1%" width={22} height={28} className="nav-link-icon" />
+                  {link.label}
+                </a>
+              </li>
+            ))}
           </ul>
+
+          {/* Hamburger — solo móvil */}
+          <button
+            className="nav-hamburger"
+            onClick={() => setMenuOpen(v => !v)}
+            aria-label="Abrir menú"
+          >
+            <span /><span /><span />
+          </button>
+
           <div className="nav-tail">
             <div className="nav-chain">
               {[...Array(5)].map((_, i) => (
@@ -530,7 +577,7 @@ export default function Home() {
             <div className="hero-pre-text">San Andreas · FiveM Roleplay</div>
             <div className="hero-pre-line" />
           </div>
-          <Image src="/logo.png" alt="Mongrels MC" width={200} height={200} className="hero-logo" />
+          <Image src="/logo.png" alt="Mongrels MC" width={200} height={200} className="hero-logo" priority fetchPriority="high" />
           <h1 className="hero-title">Mongrels <em>MC</em></h1>
           <div className="hero-tagline">&ldquo;Vive Rápido, Muere Joven&rdquo;</div>
           <div className="hero-rule">
@@ -572,9 +619,9 @@ export default function Home() {
                 <p>Todo empezó en un garaje del puerto de San Francisco. Henry Pine, veterano de Afganistán, reunió a seis personas y fundó Mongrel's MC: un club que no se arrodilla ante nadie. Los primeros ingresos vinieron de peleas clandestinas en los muelles y tráfico de chalecos antibalas robados de bases militares.</p>
                 <p>Alice Monterrey tenía contactos en la base naval de Alameda. Kyle Böhringer manejaba las finanzas. Nathan Naberrie era el peleador estrella. Sasha Scherbatsky, el ruso con pasado en la mafia, organizaba el circuito. Los Hell Angels les dejaron una nota clavada con un cuchillo: <em>"Los perros callejeros no duran mucho en territorio ajeno."</em> Henry la quemó sin pensarlo dos veces.</p>
               </div>
-              <div className="hist-img-col hist-img-col-placeholder">
+              <div className="hist-img-col">
                 <div className="hist-img-overlay" />
-                <img src={HISTORY_IMAGES[0]} alt="Historia 2017" />
+                <img src={HISTORY_IMAGES[0]} alt="Historia 2017" loading="lazy" decoding="async" />
                 <div className="img-year">2017</div>
               </div>
             </div>
@@ -585,9 +632,9 @@ export default function Home() {
                 <p>The Lost MC destruyó sus rings de pelea y robó su inventario. Las cuentas no cerraban. Sasha trajo una propuesta: un transporte de cocaína desde Tijuana, cincuenta mil de una vez. Kyle votó en contra. Nathan a favor.</p>
                 <p>Cuatro a tres: ganó el sí. Así entró el club al mundo del narcotráfico, bajo las órdenes de un cartel mexicano llamado "Patrón" que les ofreció doscientos mil mensuales a cambio de establecer una célula permanente en Los Santos. Las grietas internas ya comenzaban a formarse.</p>
               </div>
-              <div className="hist-img-col hist-img-col-placeholder">
+              <div className="hist-img-col">
                 <div className="hist-img-overlay" />
-                <img src={HISTORY_IMAGES[1]} alt="Historia 2019" />
+                <img src={HISTORY_IMAGES[1]} alt="Historia 2019" loading="lazy" decoding="async" />
                 <div className="img-year">2019</div>
               </div>
             </div>
@@ -598,9 +645,9 @@ export default function Home() {
                 <p>Alice Monterrey llevaba semanas reuniéndose con agentes del DEA. Patrón lo descubrió y les dio 24 horas. Nathan apretó el gatillo antes de que Kyle pudiera reaccionar. El operativo federal fracasó porque ya los habían avisado, pero el daño interno fue brutal.</p>
                 <p>Sasha murió acribillado en una emboscada en el puerto, defendiendo el último punto de distribución. Kyle dejó una nota bajo la puerta de Nathan: <em>"Lo siento, hermano. El juego se puso demasiado peligroso."</em> Y desapareció. Nathan quedó solo, con dos miembros y una ciudad entera que quería verlo muerto.</p>
               </div>
-              <div className="hist-img-col hist-img-col-placeholder">
+              <div className="hist-img-col">
                 <div className="hist-img-overlay" />
-                <img src={HISTORY_IMAGES[2]} alt="Historia 2021-22" />
+                <img src={HISTORY_IMAGES[2]} alt="Historia 2021-22" loading="lazy" decoding="async" />
                 <div className="img-year">2021-22</div>
               </div>
             </div>
@@ -611,9 +658,9 @@ export default function Home() {
                 <p>Cinco años después, Nathan tenía 28 años y un taller de mecánica que perdía dinero cada mes. Llegó Manuel Carrillo, representante de la Familia Carrillo Fuentes, con una propuesta diferente: recursos y contactos, pero con reglas claras — nada de drogas en las calles, nada de guerra innecesaria, nada que lastime civiles.</p>
                 <p>Nathan reclutó seis personas cuidadosamente, incluyendo a su propio hijo Camilo. Sin juramentos de sangre ni gritos de conquista. Solo seis parches sobre una mesa de trabajo y la determinación de construir algo que valiera la pena proteger. Mongrel's MC renació en Los Santos. La historia apenas comienza.</p>
               </div>
-              <div className="hist-img-col hist-img-col-placeholder">
+              <div className="hist-img-col">
                 <div className="hist-img-overlay" />
-                <img src={HISTORY_IMAGES[3]} alt="Historia 2027" />
+                <img src={HISTORY_IMAGES[3]} alt="Historia 2027" loading="lazy" decoding="async" />
                 <div className="img-year">2027</div>
               </div>
             </div>
@@ -647,30 +694,25 @@ export default function Home() {
                 {/* Strings SVG */}
                 <svg className="board-strings-svg" viewBox="0 0 1260 820" preserveAspectRatio="none">
                   <g stroke="#8B1525" strokeWidth="1.2" opacity="0.55" fill="none">
-                    {/* row 1 horizontal */}
                     <line x1="96" y1="140" x2="302" y2="135" />
                     <line x1="302" y1="135" x2="508" y2="142" />
                     <line x1="508" y1="142" x2="714" y2="138" />
                     <line x1="714" y1="138" x2="920" y2="140" />
                     <line x1="920" y1="140" x2="1126" y2="135" />
-                    {/* row 2 horizontal */}
                     <line x1="96" y1="410" x2="302" y2="405" />
                     <line x1="302" y1="405" x2="508" y2="412" />
                     <line x1="508" y1="412" x2="714" y2="408" />
                     <line x1="714" y1="408" x2="920" y2="410" />
                     <line x1="920" y1="410" x2="1126" y2="405" />
-                    {/* verticals */}
                     <line x1="96" y1="140" x2="96" y2="410" />
                     <line x1="1126" y1="135" x2="1126" y2="405" />
                     <line x1="508" y1="142" x2="508" y2="412" />
-                    {/* diagonals */}
                     <line x1="302" y1="135" x2="508" y2="412" />
                     <line x1="714" y1="138" x2="508" y2="412" />
                     <line x1="920" y1="140" x2="714" y2="408" />
                     <line x1="1126" y1="135" x2="920" y2="410" />
                     <line x1="96" y1="140" x2="302" y2="405" />
                     <line x1="302" y1="135" x2="96" y2="410" />
-                    {/* extra crossing */}
                     <line x1="714" y1="138" x2="920" y2="410" />
                     <line x1="302" y1="405" x2="96" y2="140" opacity="0.3" />
                     <line x1="920" y1="410" x2="1126" y2="600" opacity="0.4" />
@@ -678,13 +720,14 @@ export default function Home() {
                   </g>
                 </svg>
 
-                {/* Board grid */}
                 <div className="board-grid">
                   {MEMBERS.map((m) => (
                     <div
                       key={m.id}
                       className={`bcard bcard-${m.id}`}
                       onClick={() => setActiveMember(m)}
+                      onMouseEnter={() => preloadPhoto(m.foto)}
+                      onTouchStart={() => preloadPhoto(m.foto)}
                       title={`Ver ficha de ${m.alias}`}
                     >
                       <div className={`pushpin ${m.pin}`} />
@@ -695,6 +738,10 @@ export default function Home() {
                             <img
                               src={m.foto}
                               alt={m.alias}
+                              loading="lazy"
+                              decoding="async"
+                              width={160}
+                              height={213}
                               style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }}
                             />
                           )}
@@ -734,7 +781,7 @@ export default function Home() {
 
                 {/* Map */}
                 <div className="board-map" style={{ bottom: 16, right: 36 }}>
-                  <img src="fotos/Sede.png" alt="Sede" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }} />
+                  <img src="fotos/Sede.png" alt="Sede" loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }} />
                 </div>
               </div>
             </div>
@@ -897,9 +944,9 @@ export default function Home() {
             {GALLERY_IMAGES.map((src, index) => (
               <div
                 key={src}
-                className={`gcell gc${index + 1} gcell-placeholder`}
+                className={`gcell gc${index + 1}`}
               >
-                <img src={src} alt={`Galería ${index + 1}`} />
+                <img src={src} alt={`Galería ${index + 1}`} loading="lazy" decoding="async" />
               </div>
             ))}
           </div>
@@ -928,31 +975,8 @@ export default function Home() {
               <a href="#galeria">Galería</a>
             </div>
             <div className="footer-patch-col">
-              <svg viewBox="0 0 60 76" width="48" height="60" className="footer-one-pct">
-                <polygon points="30,2 58,18 58,58 30,74 2,58 2,18" fill="none" stroke="#6B0F1A" strokeWidth="3" />
-                <polygon points="30,6 54,20 54,56 30,70 6,56 6,20" fill="none" stroke="#6B0F1A" strokeWidth="1" opacity="0.4" />
-                <text x="30" y="40" textAnchor="middle" fontSize="14" fontFamily="Oswald,sans-serif" fontWeight="700" fill="#6B0F1A" letterSpacing="0">1%</text>
-                <text x="30" y="56" textAnchor="middle" fontSize="11" fontFamily="Oswald,sans-serif" fontWeight="700" fill="#6B0F1A" letterSpacing="3">ER</text>
-              </svg>
+              <Image src="/fotos/1porcent.png" alt="1% ER" width={76} height={96} className="footer-one-pct" />
               <div className="footer-socials">
-                <a href="#" className="fsoc" aria-label="Instagram">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                    <rect x="2" y="2" width="20" height="20" rx="5" />
-                    <circle cx="12" cy="12" r="5" />
-                    <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
-                  </svg>
-                </a>
-                <a href="#" className="fsoc" aria-label="Discord">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z" />
-                  </svg>
-                </a>
-                <a href="#" className="fsoc" aria-label="WhatsApp">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z" />
-                    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.189 1.618 6.006L0 24l6.156-1.594A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.93a9.936 9.936 0 0 1-5.058-1.382l-.363-.215-3.757.983.999-3.666-.237-.376A9.96 9.96 0 0 1 2.07 12C2.07 6.48 6.48 2.07 12 2.07S21.93 6.48 21.93 12 17.52 21.93 12 21.93z" />
-                  </svg>
-                </a>
               </div>
             </div>
           </div>
