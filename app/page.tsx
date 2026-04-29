@@ -22,7 +22,7 @@ const MEMBERS: Member[] = [
     id: 1, alias: 'Nyx', role: 'President', pin: 'pin-red', foto: 'fotos/Nyx.png',
     ficha: {
       nombre: 'Amelia', apellido: 'Martinez', dni: '19.304.817',
-      nacimiento: '24·JUL·2002', lugar: 'DALLAS', clasificacion: 'ALTO RIESGO',
+      nacimiento: '24·JUL·2002', lugar: 'Dallas', clasificacion: 'ALTO RIESGO',
       altura: '1.65 m', peso: '60 kg', ojos: 'Verdes', cabello: 'Castaño rojizo',
       historia: `Amelia llegó a la ciudad sin rumbo claro, pero en Mongrel's MC encontró algo que no sabía que le faltaba: una familia real.
 Dentro del club dejó de fingir, creciendo hasta convertirse en Tesorera, donde aprendió a manejar dinero, riesgos y silencios peligrosos.
@@ -43,7 +43,7 @@ Y desde cero, en una nueva ciudad, comenzarán a levantar Mongrel's otra vez com
   {
     id: 2, alias: 'Nahuel', role: 'Vice President', pin: 'pin-red', foto: 'fotos/Nahuel.png',
     ficha: {
-      nombre: 'Emilio', apellido: 'Schmidt', dni: '19.304.817',
+      nombre: 'Emilio', apellido: 'Schmidt', dni: '14305817',
       nacimiento: '11-DIC-2002', lugar: 'Chile', clasificacion: 'ALTO RIESGO',
       altura: '1.75 m', peso: '75 kg', ojos: 'Azules ', cabello: 'Castaño platinado',
       historia: 'Criado en un entorno campesino marcado por carencias, aprendió desde temprano a sobrevivir sin depender de nadie. La separación de sus padres y su vida inestable lo volvieron desconfiado, evitando lazos y priorizando su propio beneficio. Desde joven desarrolló habilidades en mecánica, que pronto comenzó a usar en trabajos al margen de la ley. Entre pueblos y ciudades, se fue vinculando con redes delictuales, participando en robos, desarmes y negocios ilegales. Su perfil bajo, mente fría y capacidad para resolver problemas lo hicieron ganar respeto en ese ambiente. Con el tiempo dejó de ser solo un mecánico, convirtiéndose en alguien clave en operaciones más complejas. Su vida nómada lo endureció, enseñándole que la lealtad se gana y el poder se toma. Decide cambiarse el apellido para mantener el anonimato en una nueva ciudad. Al llegar a Allstars, ya no buscaba oportunidades: buscaba control y territorio. Se integra al MONGRELS MC como vicepresidente, aportando experiencia criminal, liderazgo y una visión clara dentro del mundo delictual. ',
@@ -142,9 +142,9 @@ Se ganó su lugar gracias a su inteligencia, discreción y habilidad para la obt
     }
   },
   {
-    id: 8, alias: 'K.', role: 'Loyal', pin: 'pin-blue', foto: 'fotos/k..png',
+    id: 8, alias: 'Jo', role: 'Loyal', pin: 'pin-blue', foto: 'fotos/k..png',
     ficha: {
-      nombre: 'DESCONOCIDO', apellido: 'DESCONOCIDO', dni: '— SIN REGISTRO —',
+      nombre: 'Joel', apellido: 'Skywalker', dni: '— SIN REGISTRO —',
       nacimiento: '— — —', lugar: 'Desconocido', clasificacion: 'SIN CLASIFICAR',
       altura: '—', peso: '—', ojos: '—', cabello: '—',
       historia: 'Identidad sin confirmar. Solo conocido como "K." dentro del club. No existen registros previos en el sistema de la LSPD. Se investiga posible uso de identidad falsa o eliminación de antecedentes. Figura de extrema discreción dentro de la organización. Caso abierto.',
